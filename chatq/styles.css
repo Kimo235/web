@@ -1,10 +1,10 @@
 /* Grundfarben */
 :root {
-  --wood-dark: #4b2e1f;
+  --wood-dark: #DED3BB;
   --wood-light: #f5f1eb;
   --accent: #3d5a40;
-  --text-dark: #2b2b2b;
-  --text-light: #ffffff;
+  --text-dark: #FFF0E5;
+  --text-light: #000000;
 }
 
 /* Reset & Grundstruktur */
@@ -145,7 +145,7 @@ body {
   transition: background 0.3s ease;
 }
 .btn:hover {
-  background: #2c4030;
+  background: #FFF0E5;
 }
 .btn-light {
   background: var(--wood-dark);

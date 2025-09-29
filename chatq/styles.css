@@ -174,7 +174,7 @@ body {
   margin: 4rem auto;         /* Abstand oben/unten + auto für horizontales Zentrieren */
   flex-wrap: wrap;
   text-align: center; 
-  max-width: 1200px;         /* verhindert, dass sich die Boxen zu weit strecken */
+  max-width: 1000px;         /* verhindert, dass sich die Boxen zu weit strecken */
 }
 
 .service-card {
@@ -219,6 +219,7 @@ body {
 }
 
 /* Kontakt */
+
 .contact {
   padding: 4rem 0;
 }
@@ -229,12 +230,16 @@ body {
 }
 .contact-grid {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;   /* Inhalt horizontal zentrieren */
   flex-wrap: wrap;
   gap: 2rem;
+  max-width: 900px;          /* optionale Maximalbreite */
+  margin: 0 auto;            /* Grid mittig zur Seite */
+  text-align: center;        /* Text mittig in den Boxen */
 }
 
-/* Footer */
+
+
 footer {
   background: var(--wood-dark);
   color: var(--text-light);

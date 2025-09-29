@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tischmadech – Handgefertigte Tische</title>
+  <title>TischMade – Handgefertigte Tische</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
 </head>
 <body>
   <!-- Header -->
-  <header>
+  <header class="header">
     <div class="container topbar">
       <div class="brand"><a href="index.html">TischMade</a></div>
       <nav>
@@ -25,7 +27,7 @@
         <span></span><span></span><span></span>
       </div>
     </div>
-    <!-- Vollbild-Menü -->
+    <!-- Mobile Menü -->
     <div class="mobile-menu" id="mobile-menu">
       <a href="products.html">Kollektionen</a>
       <a href="gallery.html">Galerie</a>
@@ -36,25 +38,65 @@
   </header>
 
   <!-- Hero -->
-  <section class="hero container">
-    <div>
-      <h1>"Zu Tisch"<br/>Der Mittelpunkt des Hauses</h1>
-      <p>Handgefertigte, personalisierte Tische — gefertigt in Zürich. Wir restaurieren, bauen um und gestalten nach Wunsch.</p>
-      <a class="btn" href="products.html">Jetzt entdecken</a>
+  <section class="hero">
+    <div class="hero-overlay">
+      <div class="container hero-content">
+        <h1>„Zu Tisch“ – Der Mittelpunkt des Hauses</h1>
+        <p>Handgefertigte, personalisierte Tische — mit Liebe in Zürich gefertigt. Restaurierung, Umbau und Maßarbeit aus einer Hand.</p>
+        <a class="btn" href="products.html">Jetzt entdecken</a>
+      </div>
     </div>
-    <aside class="hero-aside">
-      <h3>Kontakt</h3>
-      <p>Tischmadech@icloud.com</p>
-      <p><strong>Dölf Bachmann</strong><br/>079 381 31 68</p>
-      <p><strong>Anastasia Wey</strong><br/>079 358 30 89</p>
-      <p><strong>Micky Pelzner</strong><br/>076 595 60 80</p>
-    </aside>
   </section>
 
   <!-- Intro -->
   <section class="container intro">
     <h2>Über TischMade</h2>
-    <p>Wir sind spezialisiert auf maßgefertigte Tische, Restaurierung und Szenografie. Jedes Stück wird in unserer Werkstatt in Zürich gefertigt und ist ein Unikat.</p>
+    <p>In unserer Werkstatt in Zürich entstehen einzigartige Möbelstücke. Jedes Projekt erzählt eine Geschichte von Handwerk, Material und Leidenschaft. Von der <strong>Restaurierung</strong> über <strong>maßgefertigte Tische</strong> bis hin zu <strong>Szenografie</strong> – wir schaffen Unikate, die ein Leben lang begleiten.</p>
+  </section>
+
+  <!-- Leistungen -->
+  <section class="services container">
+    <div class="service-card">
+      <h3>Maßgefertigte Tische</h3>
+      <p>Individuelle Designs abgestimmt auf Ihren Wohnraum – modern, rustikal oder klassisch.</p>
+    </div>
+    <div class="service-card">
+      <h3>Restaurierung</h3>
+      <p>Wir geben alten Möbeln neues Leben und erhalten ihre Geschichte für kommende Generationen.</p>
+    </div>
+    <div class="service-card">
+      <h3>Szenografie</h3>
+      <p>Einrichtung, Bühnenbau und kreative Raumgestaltung mit einzigartigen Holzarbeiten.</p>
+    </div>
+  </section>
+
+  <!-- Galerie Vorschau -->
+  <section class="gallery-preview">
+    <div class="container">
+      <h2>Unsere Arbeiten</h2>
+      <div class="gallery-grid">
+        <img src="images/tisch1.jpg" alt="Massivholztisch" />
+        <img src="images/tisch2.jpg" alt="Restaurierter Tisch" />
+        <img src="images/tisch3.jpg" alt="Moderner Esstisch" />
+      </div>
+      <a href="gallery.html" class="btn btn-light">Zur Galerie</a>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section class="contact container">
+    <h2>Ihr direkter Draht zu uns</h2>
+    <div class="contact-grid">
+      <div>
+        <p><strong>Dölf Bachmann</strong><br/>079 381 31 68</p>
+        <p><strong>Anastasia Wey</strong><br/>079 358 30 89</p>
+        <p><strong>Micky Pelzner</strong><br/>076 595 60 80</p>
+      </div>
+      <div>
+        <p><strong>Email:</strong> <a href="mailto:Tischmadech@icloud.com">Tischmadech@icloud.com</a></p>
+        <a class="btn" href="kontakt.html">Kontaktformular</a>
+      </div>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -66,3 +108,4 @@
   </footer>
 </body>
 </html>
+

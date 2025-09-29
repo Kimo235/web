@@ -16,7 +16,7 @@
 
 body {
   font-family:'American Typewriter', serif;
-  line-height: 1.6;
+  line-height: 1.16;
   color: var(--text-dark);
   background: var(--wood-light);
 }

@@ -170,6 +170,8 @@ body {
   display: flex;
   gap: 2rem;
   margin: 4rem 0;
+  flex-wrap: wrap;
+  text-align: center; 
 }
 .service-card {
   background: #fff;

@@ -111,7 +111,7 @@ body {
 }
 
 .hero-overlay {
-  background: rgba(0,0,0,0.5);
+  background: #FFF0E5;
   width: 100%;
   height: 100%;
   display: flex;

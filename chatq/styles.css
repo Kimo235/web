@@ -145,7 +145,7 @@ body {
   transition: background 0.3s ease;
 }
 .btn:hover {
-  background: #2c4030;
+  background: #554a35;
 }
 .btn-light {
   background: var(--wood-dark);

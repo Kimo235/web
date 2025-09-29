@@ -1,10 +1,10 @@
 /* Grundfarben */
 :root {
-  --wood-dark: #4b2e1f;
-  --wood-light: #f5f1eb;
+  --wood-dark: #DED3BB;
+  --wood-light: #FFF0E5;
   --accent: #3d5a40;
   --text-dark: #2b2b2b;
-  --text-light: #ffffff;
+  --text-light: #d6c6b6;
 }
 
 /* Reset & Grundstruktur */

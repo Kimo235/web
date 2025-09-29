@@ -5,11 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TischMade – Kontakt</title>
   <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
+  <style>
+    body { font-family: sans-serif; margin:0; }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      margin-top: 30px;
+    }
+    .contact-form, .contact-aside {
+      background: #ded3bb;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .contact-form h2 { margin-bottom: 16px; }
+    .field { margin-bottom: 16px; }
+    .field label { display:block; font-weight:600; margin-bottom:6px; }
+    .field input, .field select, .field textarea {
+      width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem;
+    }
+    .consent { display:flex; align-items:flex-start; gap:8px; margin-bottom:16px; }
+    .btn {
+      background:#a78f6c; color:#000000; border:none;
+      padding:12px 20px; border-radius:8px;
+      cursor:pointer; font-size:1rem;
+    }
+    .btn:hover { background: #554a35; }
+    .contact-aside h3 { margin-top:0; }
+    #map { width:100%; height:200px; margin-top:16px; border-radius:8px; }
+    @media(max-width: 768px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
+    <!-- dein Header unverändert -->
+     <header class="header">
     <div class="container topbar">
       <div class="brand"><a href="index.html">Tisch<br>Made<br>CH</a></div>
       <nav>
@@ -17,7 +50,7 @@
           <li><a href="products.html">Kollektionen</a></li>
           <li><a href="gallery.html">Galerie</a></li>
           <li><a href="werkstatt.html">Werkstatt</a></li>
-          <li><a href="kontakt.html" class="active">Kontakt</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
           <li><a href="cart.html">Warenkorb (0)</a></li>
         </ul>
       </nav>
@@ -25,6 +58,7 @@
         <span></span><span></span><span></span>
       </div>
     </div>
+    <!-- Mobile Menü -->
     <div class="mobile-menu" id="mobile-menu">
       <a href="products.html">Kollektionen</a>
       <a href="gallery.html">Galerie</a>
@@ -33,39 +67,35 @@
       <a href="cart.html">Warenkorb</a>
     </div>
   </header>
+  </header>
 
-  <!-- Kontakt -->
   <main class="container">
     <h1>Kontakt</h1>
     <p>Erzähl uns kurz von deinem Projekt – wir melden uns zeitnah bei dir.</p>
 
     <div class="contact-layout">
-      <!-- Formular -->
+      <!-- Kontaktformular -->
       <form
         id="contact-form"
         class="contact-form"
         method="POST"
-        enctype="text/plain"
-        action="mailto:tischmadech@icloud.com"
-        >
-        <!-- HINWEIS:
-             Für Formspree: action="https://formspree.io/f/DEINE_ID" und method="POST"
-             Danach "enctype" entfernen.
-        -->
+        action="https://formspree.io/f/DEINE_ID"
+      >
+        <h2>Nachricht senden</h2>
+
         <div class="field">
           <label for="name">Name*</label>
           <input id="name" name="Name" type="text" required />
         </div>
 
-        <div class="field two">
-          <div>
-            <label for="email">E-Mail*</label>
-            <input id="email" name="Email" type="email" required />
-          </div>
-          <div>
-            <label for="phone">Telefon</label>
-            <input id="phone" name="Telefon" type="tel" placeholder="+41 ..." />
-          </div>
+        <div class="field">
+          <label for="email">E-Mail*</label>
+          <input id="email" name="Email" type="email" required />
+        </div>
+
+        <div class="field">
+          <label for="phone">Telefon</label>
+          <input id="phone" name="Telefon" type="tel" placeholder="+41 ..." />
         </div>
 
         <div class="field">
@@ -94,42 +124,32 @@
         </div>
 
         <button class="btn" type="submit">Nachricht senden</button>
-        <p id="form-note" class="form-note">Hinweis: Ohne Backend öffnet sich dein E-Mail-Programm (mailto-Versand).</p>
       </form>
 
-      <!-- Kontaktinfo / Sidebar -->
+      <!-- Kontaktinfos -->
       <aside class="contact-aside">
         <h3>Direktkontakt</h3>
-        <p><strong>E-Mail:</strong><br/>Tischmadech@icloud.com</p>
+        <p><strong>E-Mail:</strong><br/>tischmadech@icloud.com</p>
         <p><strong>Dölf Bachmann</strong><br/>079 381 31 68</p>
         <p><strong>Anastasia Wey</strong><br/>079 358 30 89</p>
         <p><strong>Micky Pelzner</strong><br/>076 595 60 80</p>
 
         <h3 style="margin-top:16px;">Adressen</h3>
         <p>Marktgasse 4, 8001 Zürich<br/>Oberdorfstrasse 17, 8001 Zürich<br/>Rämistrasse 4, 8001 Zürich</p>
+
+        <div id="map"></div>
       </aside>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer>
+    <footer>
     <div class="container footer-content">
       <div class="brand">TischMadeCH</div>
       <p>© 2025 TischMadeCH – Handgefertigte Tische, Restaurierung & Szenografie</p>
     </div>
   </footer>
-
-  <script>
-    // Einfache Client-Validierung + „Fake“-Erfolg für Formspree-Setup (optional)
-    const form = document.getElementById('contact-form');
-    form.addEventListener('submit', (e) => {
-      // Wenn noch mailto aktiv ist, lassen wir das Standardverhalten zu (E-Mail-Client öffnet sich).
-      // Wenn du Formspree nutzt, kannst du unten stehenden Block aktivieren:
-      // e.preventDefault();
-      // fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
-      //   .then(()=> { alert('Danke! Wir melden uns in Kürze.'); form.reset(); })
-      //   .catch(()=> { alert('Ups, etwas ist schiefgelaufen. Bitte später erneut versuchen.'); });
-    });
-  </script>
+  </footer>
 </body>
 </html>
+

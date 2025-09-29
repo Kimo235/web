@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TischMade – Produkt</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container topbar">
+      <div class="brand"><a href="index.html">TischMade</a></div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="products.html">Kollektionen</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="werkstatt.html">Werkstatt</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="cart.html">Warenkorb (0)</a></li>
+        </ul>
+      </nav>
+      <div class="burger" id="burger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="products.html">Kollektionen</a>
+      <a href="gallery.html">Galerie</a>
+      <a href="werkstatt.html">Werkstatt</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="cart.html">Warenkorb</a>
+    </div>
+  </header>
+
+  <!-- Produktdetails -->
+  <main class="container">
+    <div id="product-detail" class="product-detail">
+      <!-- Inhalt wird per JS geladen -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div class="brand">TischMade</div>
+      <p>© 2025 TischMade – Handgefertigte Tische, Restaurierung & Szenografie</p>
+    </div>
+  </footer>
+
+  <script>
+    // Beispiel-Produkte (wie in products.html)
+    const products = [];
+    for(let i=1; i<=12; i++){
+      products.push({
+        id: i,
+        title: ['Eichen-Tisch','Antiker Tisch','Design Tisch','Custom Tisch'][i%4] + ' ' + i,
+        price: (1200 + i*100) + '.00',
+        img: `https://picsum.photos/seed/tisch${i}/800/600`,
+        desc: "Ein einzigartiger handgefertigter Tisch. Lieferzeit ca. 3–4 Wochen. Lieferung in der ganzen Schweiz.",
+        material: "Eiche massiv, geölt. Pflege mit feuchtem Tuch."
+      });
+    }
+
+    // Produkt-ID aus URL holen (?id=3)
+    const params = new URLSearchParams(window.location.search);
+    const productId = parseInt(params.get("id")) || 1;
+    const product = products.find(p=>p.id===productId);
+
+    // Rendern
+    const container = document.getElementById("product-detail");
+    if(product){
+      container.innerHTML = `
+        <div class="product-wrapper">
+          <img src="${product.img}" alt="${product.title}" />
+          <div class="product-info">
+            <h1>${product.title}</h1>
+            <p class="price">CHF ${product.price}</p>
+            <p>${product.desc}</p>
+            <details>
+              <summary>Material & Pflege</summary>
+              <p>${product.material}</p>
+            </details>
+            <a href="cart.html" class="btn">In den Warenkorb</a>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

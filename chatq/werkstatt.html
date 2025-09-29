@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TischMade – Werkstatt & Läden</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google Maps API einbinden (API Key nötig) -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOVQL-KSGGsh3dJ5dkYBqzpha_Tryk2Ro"></script>
+
+  <script>
+    function initMap() {
+      // Karte auf Zürich zentrieren
+      var center = { lat: 47.3715, lng: 8.5450 };
+
+      var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: center,
+      });
+
+      // Standorte mit exakten Koordinaten
+      var locations = [
+        { lat: 47.372258, lng: 8.544123, title: "Marktgasse 4 – Showroom & Beratung" },
+        { lat: 47.370490, lng: 8.545040, title: "Oberdorfstrasse 17 – Atelier & Restaurierung" },
+        { lat: 47.367970, lng: 8.547010, title: "Rämistrasse 4 – Werkstatt & Fertigung" }
+      ];
+
+      locations.forEach(loc => {
+        new google.maps.Marker({
+          position: { lat: loc.lat, lng: loc.lng },
+          map: map,
+          title: loc.title
+        });
+      });
+    }
+  </script>
+</head>
+<body onload="initMap()">
+  <!-- Header -->
+  <header>
+    <div class="container topbar">
+      <div class="brand"><a href="index.html">TischMade</a></div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="products.html">Kollektionen</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="werkstatt.html" class="active">Werkstatt</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="cart.html">Warenkorb (0)</a></li>
+        </ul>
+      </nav>
+      <div class="burger" id="burger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="products.html">Kollektionen</a>
+      <a href="gallery.html">Galerie</a>
+      <a href="werkstatt.html">Werkstatt</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="cart.html">Warenkorb</a>
+    </div>
+  </header>
+
+  <!-- Werkstatt -->
+  <main class="container">
+    <h1>Werkstatt & Läden</h1>
+    <p>Besuche uns an unseren Standorten in Zürich. Hier entstehen unsere einzigartigen Tische und Projekte.</p>
+
+    <div class="addresses">
+      <div class="address-card">
+        <h3>Marktgasse 4</h3>
+        <p>8001 Zürich</p>
+        <p>Showroom & Beratung</p>
+      </div>
+      <div class="address-card">
+        <h3>Oberdorfstrasse 17</h3>
+        <p>8001 Zürich</p>
+        <p>Atelier & Restaurierung</p>
+      </div>
+      <div class="address-card">
+        <h3>Rämistrasse 4</h3>
+        <p>8001 Zürich</p>
+        <p>Werkstatt & Fertigung</p>
+      </div>
+    </div>
+
+    <!-- Karte -->
+    <div id="map" style="width:100%; height:500px; margin-top:20px;"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div class="brand">TischMade</div>
+      <p>© 2025 TischMade – Handgefertigte Tische, Restaurierung & Szenografie</p>
+    </div>
+  </footer>
+</body>
+</html>

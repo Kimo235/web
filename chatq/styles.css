@@ -1,9 +1,9 @@
 /* Grundfarben */
 :root {
   --wood-dark: #DED3BB;
-  --wood-light: #f5f1eb;
-  --accent: #3d5a40;
-  --text-dark: #FFF0E5;
+  --wood-light: #FFF0E5;
+  --accent: #033c09;
+  --text-dark: #000000;
   --text-light: #000000;
 }
 

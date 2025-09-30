@@ -36,7 +36,7 @@ body {
   top: 0;
   z-index: 1000;
 }
-
+/* Map */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -60,14 +60,12 @@ body {
   gap: 1.5rem;
   list-style: none;
 }
-
 .nav-links a {
   color: var(--text-light);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
-
 .nav-links a:hover {
   color: var(--accent);
 }
@@ -113,7 +111,6 @@ body {
   display: flex;
   align-items: center;
 }
-
 .hero-overlay {
   background: #FFF0E5;
   width: 100%;
@@ -121,24 +118,22 @@ body {
   display: flex;
   align-items: center;
 }
-
 .hero-content {
   color: var(--text-light);
   text-align: left;
   max-width: 600px;
 }
-
 .hero h1 {
   font-family: 'American Typewriter', serif;
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
-
 .hero p {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
 }
 
+/* btn */
 .btn {
   display: inline-block;
   background: var(--accent);
@@ -178,11 +173,9 @@ body {
   margin: 4rem auto;         /* Abstand oben/unten + auto für horizontales Zentrieren */
   flex-wrap: wrap;
   text-align: center; 
-  max-width: 1000px;         /* verhindert, dass sich die Boxen zu weit strecken */
+  max-width: 1000px;        /* verhindert, dass sich die Boxen zu weit strecken */        
 }
-
 .service-card {
- 
   background: #ffffff;
   padding: 2rem;
   border-radius: 10px;
@@ -223,7 +216,6 @@ body {
 }
 
 /* Kontakt */
-
 .contact {
   padding: 4rem 0;
 }
@@ -242,8 +234,7 @@ body {
   text-align: center;        /* Text mittig in den Boxen */
 }
 
-
-
+/* Footer */
 footer {
   background: var(--wood-dark);
   color: var(--text-light);

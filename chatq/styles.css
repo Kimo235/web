@@ -42,15 +42,19 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-
 .brand a {
   font-family: 'American Typewriter', serif;
   font-size: 1.5rem;
   text-decoration: none;
   color: var(--text-light);
   font-weight: bold;
-}
 
+  /* Rahmen hinzufügen */
+  border: 2px solid var(--accent); /* Farbe = Akzentfarbe */
+  padding: 0.5rem 1rem;            /* Abstand zwischen Text und Rahmen */
+  border-radius: 8px;              /* leicht abgerundet, für eckig 0px */
+  display: inline-block;           /* sorgt für sauberen Rahmen */
+}
 .nav-links {
   display: flex;
   gap: 1.5rem;

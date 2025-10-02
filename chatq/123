@@ -1,2 +1,40 @@
 #DED3BB
 #FFF0E5
+
+
+<form action="send.php" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" name="name" id="name" required>
+
+  <label for="email">E-Mail:</label>
+  <input type="email" name="email" id="email" required>
+
+  <label for="message">Nachricht:</label>
+  <textarea name="message" id="message" required></textarea>
+
+  <button type="submit">Absenden</button>
+</form>
+
+<?php
+// Empfänger-Adresse
+$to = "deine.email@domain.ch";
+
+// Eingaben aus dem Formular
+$name = $_POST['name'];
+$email = $_POST['email'];
+$message = $_POST['message'];
+
+// Betreff und Nachricht
+$subject = "Neue Nachricht von $name über deine Webseite";
+$body = "Name: $name\nEmail: $email\n\nNachricht:\n$message";
+
+// Header (Absender usw.)
+$headers = "From: $email";
+
+// E-Mail senden
+if (mail($to, $subject, $body, $headers)) {
+    echo "Danke $name, deine Nachricht wurde verschickt!";
+} else {
+    echo "Fehler beim Senden der Nachricht.";
+}
+?>

@@ -3,15 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TischMadeCH – Handgefertigte Tische</title>
-  <!-- Google Fonts -->
+  <title>TischMadeCH - Handgefertigte Tische</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
+  <header class="header" data-animate="fade">
     <div class="container topbar">
       <div class="brand"><a href="index.html">Tisch<br>Made<br>CH</a></div>
       <nav>
@@ -23,12 +21,11 @@
           <li><a href="cart.html">Warenkorb (0)</a></li>
         </ul>
       </nav>
-      <div class="burger" id="burger">
+      <button class="burger" id="burger" aria-label="Menue oeffnen">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
-    <!-- Mobile Menü -->
-    <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <a href="products.html">Kollektionen</a>
       <a href="gallery.html">Galerie</a>
       <a href="werkstatt.html">Werkstatt</a>
@@ -37,86 +34,125 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-overlay">
-      <div class="container hero-content">
-        <h1>„Zu Tisch“ – Der Mittelpunkt des Hauses</h1>
-        <p>Handgefertigte, personalisierte Tische — mit Liebe in Zürich gefertigt. Restaurierung, Umbau und Maßarbeit aus einer Hand.</p>
-        <a class="btn" href="products.html">Jetzt entdecken</a>
-      </div>
+  <section class="hero" data-animate="hero" data-hero>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-transition" data-hero-transition aria-hidden="true"></div>
+    <div class="hero-slider" data-hero-slider>
+      <article class="hero-slide is-active" id="hero-slide-0" data-hero-slide role="tabpanel" aria-labelledby="hero-tab-0" style="--hero-image: url('images/hero-wood.jpg'); --hero-tint: rgba(22, 18, 14, 0.55);">
+        <div class="hero-slide-inner container">
+          <p class="hero-kicker">Massgefertigte Tische</p>
+          <h1>Unikate aus Massivholz</h1>
+          <p>Schweizer Handwerk trifft auf charakterstarke Materialien. Wir gestalten Tische, die Generationen verbinden und den Mittelpunkt Ihres Zuhauses bilden.</p>
+          <a class="btn hero-cta" href="products.html">Kollektionen ansehen</a>
+        </div>
+      </article>
+      <article class="hero-slide" id="hero-slide-1" data-hero-slide role="tabpanel" aria-labelledby="hero-tab-1" style="--hero-image: url('images/hero-wood.jpg'); --hero-tint: rgba(61, 48, 32, 0.55);">
+        <div class="hero-slide-inner container">
+          <p class="hero-kicker">Restaurierung</p>
+          <h1>Alte Stuecke, neuer Glanz</h1>
+          <p>Wir bewahren die Geschichte Ihres Lieblingsmoebels und verleihen ihm zugleich eine zeitgemaesse Handschrift. Detailgetreu, langlebig und liebevoll.</p>
+          <a class="btn hero-cta" href="gallery.html">Vorher &amp; Nachher entdecken</a>
+        </div>
+      </article>
+      <article class="hero-slide" id="hero-slide-2" data-hero-slide role="tabpanel" aria-labelledby="hero-tab-2" style="--hero-image: url('images/hero-wood.jpg'); --hero-tint: rgba(80, 66, 49, 0.55);">
+        <div class="hero-slide-inner container">
+          <p class="hero-kicker">Szenografie</p>
+          <h1>Raeume, die Geschichten erzaehlen</h1>
+          <p>Ob Ausstellung oder Buehnenbild: Wir komponieren Holz, Licht und Material zu atmosphaerischen Erlebniswelten, die nachhaltig im Gedaechtnis bleiben.</p>
+          <a class="btn hero-cta" href="werkstatt.html">Werkstattblick werfen</a>
+        </div>
+      </article>
+      <article class="hero-slide" id="hero-slide-3" data-hero-slide role="tabpanel" aria-labelledby="hero-tab-3" style="--hero-image: url('images/hero-wood.jpg'); --hero-tint: rgba(112, 90, 65, 0.55);">
+        <div class="hero-slide-inner container">
+          <p class="hero-kicker">Werkstatt</p>
+          <h1>Material mit Charakter</h1>
+          <p>Von der Rohbohle bis zum letzten Schliff begleiten wir jedes Projekt persoenlich. Lernen Sie unsere Prozesse kennen und erleben Sie Holz in reinster Form.</p>
+          <a class="btn hero-cta" href="kontakt.html">Projekt anfragen</a>
+        </div>
+      </article>
     </div>
+    <nav class="hero-menu" data-hero-menu role="tablist" aria-label="Highlights">
+      <button type="button" class="hero-menu-item is-active" id="hero-tab-0" data-hero-nav="0" role="tab" aria-controls="hero-slide-0" aria-selected="true">
+        <span class="hero-menu-title">Massivholz</span>
+        <span class="hero-menu-copy">Massarbeit fuer Wohnraeume mit Charakter.</span>
+      </button>
+      <button type="button" class="hero-menu-item" id="hero-tab-1" data-hero-nav="1" role="tab" aria-controls="hero-slide-1" aria-selected="false" tabindex="-1">
+        <span class="hero-menu-title">Restaurierung</span>
+        <span class="hero-menu-copy">Behutsam restauriert, fuer morgen bewahrt.</span>
+      </button>
+      <button type="button" class="hero-menu-item" id="hero-tab-2" data-hero-nav="2" role="tab" aria-controls="hero-slide-2" aria-selected="false" tabindex="-1">
+        <span class="hero-menu-title">Szenografie</span>
+        <span class="hero-menu-copy">Inszenierungen, die Atmosphaere schaffen.</span>
+      </button>
+      <button type="button" class="hero-menu-item" id="hero-tab-3" data-hero-nav="3" role="tab" aria-controls="hero-slide-3" aria-selected="false" tabindex="-1">
+        <span class="hero-menu-title">Werkstatt</span>
+        <span class="hero-menu-copy">Holzkompetenz aus unserer Manufaktur.</span>
+      </button>
+    </nav>
   </section>
 
-  <!-- Intro -->
-  <section class="container intro">
-    <h2>Über TischMadeCH</h2>
-    <p>In unserer Werkstatt in Zürich entstehen einzigartige Möbelstücke. Jedes Projekt erzählt eine Geschichte von Handwerk, Material und Leidenschaft. Von der <strong>Restaurierung</strong> über <strong>maßgefertigte Tische</strong> bis hin zu <strong>Szenografie</strong> – wir schaffen Unikate, die ein Leben lang begleiten.</p>
+  <section class="container intro" data-animate="up">
+    <h2>Ueber TischMadeCH</h2>
+    <p>In unserer Werkstatt in Zuerich entstehen einzigartige Moebelstuecke. Jedes Projekt erzaehlt eine Geschichte von Handwerk, Material und Leidenschaft. Von der <strong>Restaurierung</strong> ueber <strong>massgefertigte Tische</strong> bis hin zu <strong>Szenografie</strong> - wir schaffen Unikate, die ein Leben lang begleiten.</p>
   </section>
 
-  <!-- Leistungen -->
-  <section class="services container">
-    <div class="service-card">
-      <h3>Maßgefertigte Tische</h3>
-      <p>Individuelle Designs abgestimmt auf Ihren Wohnraum – modern, rustikal oder klassisch.</p>
+  <section class="services container" data-animate="stagger">
+    <div class="service-card" data-animate-item>
+      <h3>Massgefertigte Tische</h3>
+      <p>Individuelle Designs abgestimmt auf Ihren Wohnraum - modern, rustikal oder klassisch.</p>
     </div>
-    <div class="service-card" >
+    <div class="service-card" data-animate-item>
       <h3>Restaurierung</h3>
-      <p>Wir geben alten Möbeln neues Leben und erhalten ihre Geschichte für kommende Generationen.</p>
+      <p>Wir geben alten Moebeln neues Leben und erhalten ihre Geschichte fuer kommende Generationen.</p>
     </div>
-    <div class="service-card">
+    <div class="service-card" data-animate-item>
       <h3>Szenografie</h3>
-      <p>Einrichtung, Bühnenbau und kreative Raumgestaltung mit einzigartigen Holzarbeiten.</p>
+      <p>Einrichtung, Buehnenbau und kreative Raumgestaltung mit einzigartigen Holzarbeiten.</p>
     </div>
   </section>
 
-  <!-- Galerie Vorschau -->
-  <section class="gallery-preview">
+  <section class="gallery-preview" data-animate="fade">
     <div class="container">
       <h2>Unsere Arbeiten</h2>
       <div class="gallery-grid">
-        <img src=".jpg/Bilder_0.jpg" alt="Massivholztisch" />
-        <img src=".jpg/Bilder_0.jpg" alt="Restaurierter Tisch" />
-        <img src=".jpg/Bilder_0.jpg" alt="Moderner Esstisch" />
+        <img src=".jpg/Bilder_0.jpg" alt="Massivholztisch" data-animate="in" />
+        <img src=".jpg/Bilder_0.jpg" alt="Restaurierter Tisch" data-animate="in" />
+        <img src=".jpg/Bilder_0.jpg" alt="Moderner Esstisch" data-animate="in" />
       </div>
       <a href="gallery.html" class="btn btn-light">Zur Galerie</a>
     </div>
   </section>
 
-    <!-- Team-Kontakte -->
-    <section class="contact container">
-  <h2>Ihr direkter Draht zu uns</h2>
-  <div class="contact-grid">
-    <div class="contact-people">
-      <div class="contact-card">
-        <strong>Dölf Bachmann</strong><br>
+  <section class="contact container" data-animate="up">
+    <h2>Ihr direkter Draht zu uns</h2>
+    <div class="contact-grid">
+      <div class="contact-card" data-animate="up">
+        <strong>Duelf Bachmann</strong><br>
         <a href="tel:+41793813168">079 381 31 68</a>
       </div>
-      <div class="contact-card">
+      <div class="contact-card" data-animate="up">
         <strong>Anastasia Wey</strong><br>
         <a href="tel:+41793583089">079 358 30 89</a>
       </div>
-      <div class="contact-card">
+      <div class="contact-card" data-animate="up">
         <strong>Micky Pelzner</strong><br>
         <a href="tel:+41765956080">076 595 60 80</a>
       </div>
-      <div class="contact-card">
+      <div class="contact-card" data-animate="up">
         <strong>Email</strong><br>
         <a href="mailto:Tischmadech@icloud.com">Tischmadech@icloud.com</a>
       </div>
+    </div>
+    <div class="contact-cta" data-animate="fade">
       <a class="btn" href="kontakt.html">Kontaktformular</a>
     </div>
-  </div>
-</section>
+  </section>
 
-
-  <!-- Footer -->
-  <footer>
+  <footer data-animate="fade">
     <div class="container footer-content">
       <div class="brand">TischMadeCH</div>
-      <p>© 2025 TischMadeCH – Handgefertigte Tische, Restaurierung & Szenografie</p>
+      <p>&copy; 2025 TischMadeCH - Handgefertigte Tische, Restaurierung &amp; Szenografie</p>
     </div>
   </footer>
 </body>
 </html>
-

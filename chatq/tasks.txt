@@ -1,0 +1,2 @@
+animationen = index
+bilder einfeugn 0 index

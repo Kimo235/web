@@ -1,4 +1,4 @@
-const burger = document.getElementById('burger');
+﻿const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobile-menu');
 
 if (burger && mobileMenu) {
@@ -152,3 +152,102 @@ if (heroSection) {
   setHeroSlide(0);
   startHeroAutoplay();
 }
+
+const CART_STORAGE_KEY = 'tischmadech-cart';
+const CART_CURRENCY_FORMATTER = new Intl.NumberFormat('de-CH', {
+  style: 'currency',
+  currency: 'CHF',
+  minimumFractionDigits: 2
+});
+
+function formatCartCurrency(value) {
+  const amount = Number(value);
+  const safeAmount = Number.isFinite(amount) ? amount : 0;
+  return CART_CURRENCY_FORMATTER.format(safeAmount);
+}
+
+function readCartItems() {
+  try {
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    if (!raw) {
+      return [];
+    }
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) {
+      return parsed.filter(item => item && typeof item.id === 'string');
+    }
+    return [];
+  } catch (error) {
+    console.error('Cart parse error', error);
+    return [];
+  }
+}
+
+function writeCartItems(items) {
+  const serialised = JSON.stringify(items);
+  localStorage.setItem(CART_STORAGE_KEY, serialised);
+  window.dispatchEvent(new CustomEvent('cart:change', { detail: { items } }));
+  return items;
+}
+
+function getCartItemCount(items = readCartItems()) {
+  return items.reduce((total, entry) => total + (entry.qty || 0), 0);
+}
+
+function updateCartCountBadges() {
+  const count = getCartItemCount();
+  document.querySelectorAll('[data-cart-count]').forEach(node => {
+    node.textContent = count.toString();
+    node.classList.remove('is-updated');
+    void node.offsetWidth;
+    node.classList.add('is-updated');
+    window.setTimeout(() => node.classList.remove('is-updated'), 620);
+  });
+}
+function addItemToCart(entry) {
+  if (!entry || !entry.id) {
+    return readCartItems();
+  }
+
+  const items = readCartItems();
+  const existing = items.find(item => item.id === entry.id);
+  const quantity = Math.max(1, Number(entry.qty) || 1);
+
+  if (existing) {
+    existing.qty = (existing.qty || 0) + quantity;
+    existing.price = Number(entry.price) || existing.price;
+    existing.img = entry.img || existing.img;
+    existing.title = entry.title || existing.title;
+  } else {
+    items.push({
+      id: entry.id,
+      title: entry.title,
+      price: Number(entry.price) || 0,
+      img: entry.img,
+      qty: quantity
+    });
+  }
+
+  writeCartItems(items);
+  updateCartCountBadges();
+  window.dispatchEvent(new CustomEvent('cart:added', { detail: { item: entry, items } }));
+  return items;
+}
+
+updateCartCountBadges();
+
+window.TischMadeCart = {
+  read: readCartItems,
+  write: writeCartItems,
+  add: addItemToCart,
+  count: getCartItemCount,
+  update: updateCartCountBadges,
+  format: formatCartCurrency
+};
+
+
+
+
+
+
+

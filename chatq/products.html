@@ -1,32 +1,32 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TischMadeCH – Kollektionen</title>
+  <title>TischMadeCH - Kollektionen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="container topbar">
       <div class="brand"><a href="index.html">Tisch<br>Made<br>CH</a></div>
       <nav>
         <ul class="nav-links">
-          <li><a href="products.html" class="active">Kollektionen</a></li>
+          <li><a href="products.html" class="active" aria-current="page">Kollektionen</a></li>
           <li><a href="gallery.html">Galerie</a></li>
           <li><a href="werkstatt.html">Werkstatt</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
-          <li><a href="cart.html">Warenkorb (0)</a></li>
+          <li><a href="cart.html">Warenkorb <span class="cart-count" data-cart-count>0</span></a></li>
         </ul>
       </nav>
-      <div class="burger" id="burger">
+      <button class="burger" id="burger" aria-label="Menue oeffnen">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="products.html">Kollektionen</a>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <a href="products.html" aria-current="page">Kollektionen</a>
       <a href="gallery.html">Galerie</a>
       <a href="werkstatt.html">Werkstatt</a>
       <a href="kontakt.html">Kontakt</a>
@@ -34,81 +34,199 @@
     </div>
   </header>
 
-  <!-- Produkte -->
-  <main class="container">
-    <h1>Unsere Kollektionen</h1>
-    <p>Hier findest du eine Auswahl handgefertigter Tische. Filtere nach Stil oder suche gezielt.</p>
+  <main class="products-page">
+    <div class="container">
+      <header class="products-intro">
+        <span class="kicker">Kollektionen</span>
+        <h1>Holztische nach Mass</h1>
+        <p>Fein gearbeitete Tische für Wohn-, Arbeits- und Gastbereiche. Jede Ausführung entsteht in unserer Werkstatt und wird nach Ihren Wünschen angepasst.</p>
+      </header>
 
-    <!-- Suche & Filter -->
-    <div class="product-controls">
-      <input id="search" type="text" placeholder="Suche nach 'Eiche', 'Vintage' ..." />
-      <div class="filters">
-        <span class="chip" data-filter="all">Alle</span>
-        <span class="chip" data-filter="modern">Modern</span>
-        <span class="chip" data-filter="antique">Antik</span>
-        <span class="chip" data-filter="custom">Custom</span>
-      </div>
-    </div>
+      <section class="product-controls" aria-label="Produkte filtern">
+        <div class="product-search">
+          <label class="sr-only" for="product-search">Produkte durchsuchen</label>
+          <input id="product-search" type="search" placeholder="Suche nach \"Eiche\", \"Restauriert\" oder \"Massiv\"" autocomplete="off" />
+        </div>
+        <div class="product-filters" role="group" aria-label="Stile filtern">
+          <button type="button" class="chip is-active" data-filter="all">Alle</button>
+          <button type="button" class="chip" data-filter="modern">Modern</button>
+          <button type="button" class="chip" data-filter="antique">Antik</button>
+          <button type="button" class="chip" data-filter="custom">Custom</button>
+        </div>
+      </section>
 
-    <!-- Produktgrid -->
-    <div class="grid" id="product-grid">
-      <!-- Produkte werden per JS generiert -->
+      <div class="product-grid" id="product-grid" aria-live="polite"></div>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container footer-content">
       <div class="brand">TischMadeCH</div>
-      <p>© 2025 TischMadeCH – Handgefertigte Tische, Restaurierung & Szenografie</p>
+      <p>&copy; 2025 TischMadeCH - Handgefertigte Tische, Restaurierung &amp; Szenografie</p>
     </div>
   </footer>
 
   <script>
-    // Dummy Produkte
-    const products = [];
-    for(let i=1; i<=12; i++){
-      products.push({
-        id: i,
-        title: ['Eichen-Tisch','Antiker Tisch','Design Tisch','Custom Tisch'][i%4] + ' ' + i,
-        price: (1200 + i*100) + '.00',
-        tags: i%3===0 ? ['antique'] : (i%3===1 ? ['modern'] : ['custom']),
-        img: `https://picsum.photos/seed/tisch${i}/400/300`
-      });
-    }
+    const products = [
+      {
+        id: 'atelier-aare',
+        title: 'Atelier Aare',
+        price: 3490,
+        filters: ['modern'],
+        img: '.jpg/Bilder_0.jpg',
+        description: 'Schwebender Esstisch aus geräucherter Eiche mit handgeschmiedeten Stahlwangen.',
+        meta: ['220 x 95 cm', 'Eiche & Schwarzstahl', 'Lieferzeit 6 Wochen']
+      },
+      {
+        id: 'werkbank-limmat',
+        title: 'Werkbank Limmat',
+        price: 2890,
+        filters: ['custom'],
+        img: '.jpg/Bilder_1.jpg',
+        description: 'Vielseitiger Werk- und Küchentisch mit gezinkter Schweizer Kante und eingelassenen Messingdetails.',
+        meta: ['200 x 85 cm', 'Nussbaum massiv', 'Flexible Einteilung']
+      },
+      {
+        id: 'salon-helvetia',
+        title: 'Salon Helvetia',
+        price: 2590,
+        filters: ['antique'],
+        img: '.jpg/Bilder_14.jpg',
+        description: 'Restaurierter Salon-Tisch mit sanft gebürsteter Oberfläche und historischen Beschlägen.',
+        meta: ['190 x 90 cm', 'Fichte restauriert', 'Einmaliges Einzelstueck']
+      },
+      {
+        id: 'studio-rigi',
+        title: 'Studio Rigi',
+        price: 3150,
+        filters: ['modern'],
+        img: '.jpg/Bilder_2.jpg',
+        description: 'Puristischer Studio-Tisch mit gefasten Kanten und seidenmatter Öloberfläche.',
+        meta: ['210 x 95 cm', 'Eiche hell geölt', 'Kabeldurchführung optional']
+      },
+      {
+        id: 'familientisch-jura',
+        title: 'Familientisch Jura',
+        price: 3790,
+        filters: ['custom'],
+        img: '.jpg/Bilder_0.jpg',
+        description: 'Robuster Familientisch mit lebendiger Maserung und sanft behauener Baumkante.',
+        meta: ['240 x 100 cm', 'Jura-Eiche', 'Erweiterung moeglich']
+      },
+      {
+        id: 'antik-luzern',
+        title: 'Antik Luzern',
+        price: 2450,
+        filters: ['antique'],
+        img: '.jpg/Bilder_14.jpg',
+        description: 'Original Luzerner Biedermeier Tisch, liebevoll aufgearbeitet und neu versiegelt.',
+        meta: ['180 x 88 cm', 'Kirsche', 'Zertifizierte Restaurierung']
+      },
+      {
+        id: 'atelier-albis',
+        title: 'Atelier Albis',
+        price: 2990,
+        filters: ['modern'],
+        img: '.jpg/Bilder_1.jpg',
+        description: 'Atelier-Tisch mit asymmetrischem Untergestell und dezenten Messingfüssen.',
+        meta: ['200 x 90 cm', 'Räuchereiche & Messing', 'Massanfertigung']
+      },
+      {
+        id: 'signature-sihl',
+        title: 'Signature Sihl',
+        price: 4250,
+        filters: ['custom'],
+        img: '.jpg/Bilder_2.jpg',
+        description: 'Boardroom-Tisch mit eingelassener Steinplatte, verdeckter Technik und geölter Oberfläche.',
+        meta: ['260 x 105 cm', 'Eiche & Granit', 'Auftragsarbeit']
+      }
+    ];
 
     const grid = document.getElementById('product-grid');
-    function renderProducts(list){
-      grid.innerHTML = '';
-      list.forEach(p=>{
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <a href="product.html?id=${p.id}">
-            <img src="${p.img}" alt="${p.title}" />
-            <h3>${p.title}</h3>
-            <div class="price">CHF ${p.price}</div>
-          </a>
-        `;
-        grid.appendChild(card);
-      });
+    const searchInput = document.getElementById('product-search');
+    const chips = Array.from(document.querySelectorAll('.chip'));
+    const priceFormatter = new Intl.NumberFormat('de-CH', {
+      style: 'currency',
+      currency: 'CHF',
+      minimumFractionDigits: 0
+    });
+
+    let activeFilter = 'all';
+
+    function formatPrice(value) {
+      return priceFormatter.format(Number(value) || 0);
+
     }
-    renderProducts(products);
 
-    // Suche
-    document.getElementById('search').addEventListener('input', e=>{
-      const q = e.target.value.toLowerCase();
-      renderProducts(products.filter(p=>p.title.toLowerCase().includes(q)));
-    });
+    function renderProducts(list) {
+      if (!list.length) {
+        grid.innerHTML = '<div class="products-empty">Keine Ergebnisse - passe die Suche oder Filter an.</div>';
+        return;
+      }
 
-    // Filter
-    document.querySelectorAll('.chip').forEach(chip=>{
-      chip.addEventListener('click', e=>{
-        const f = e.target.dataset.filter;
-        if(f==='all') renderProducts(products);
-        else renderProducts(products.filter(p=>p.tags.includes(f)));
+      const markup = list.map(product => {
+        const meta = product.meta.map(item => `<li>${item}</li>`).join('');
+        return `
+          <article class="product-card" data-filter-tags="${product.filters.join(' ')}">
+            <div class="product-card-media">
+              <img src="${product.img}" alt="${product.title}" loading="lazy" />
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-head">
+                <h3>${product.title}</h3>
+                <span class="product-card-price">${formatPrice(product.price)}</span>
+              </div>
+              <p class="product-card-description">${product.description}</p>
+              <ul class="product-card-meta">
+                ${meta}
+              </ul>
+              <div class="product-card-footer">
+                <a class="product-card-link" href="product.html?id=${product.id}">Details ansehen</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      grid.innerHTML = markup;
+    }
+
+    function matchesQuery(product, query) {
+      const catalogText = [product.title, product.description, product.meta.join(' ')].join(' ').toLowerCase();
+      return catalogText.includes(query);
+    }
+
+    function applyFilters() {
+      const query = searchInput.value.trim().toLowerCase();
+      let filtered = products;
+
+      if (activeFilter !== 'all') {
+        filtered = filtered.filter(product => product.filters.includes(activeFilter));
+      }
+
+      if (query) {
+        filtered = filtered.filter(product => matchesQuery(product, query));
+      }
+
+      renderProducts(filtered);
+    }
+
+    chips.forEach(chip => {
+      chip.setAttribute('aria-pressed', chip.classList.contains('is-active'));
+      chip.addEventListener('click', () => {
+        activeFilter = chip.dataset.filter;
+        chips.forEach(btn => {
+          const isActive = btn === chip;
+          btn.classList.toggle('is-active', isActive);
+          btn.setAttribute('aria-pressed', isActive);
+        });
+        applyFilters();
       });
     });
+
+    searchInput.addEventListener('input', applyFilters);
+
+    renderProducts(products);
   </script>
 </body>
 </html>

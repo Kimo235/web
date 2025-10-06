@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TischMadeCH – Warenkorb</title>
+    <title>TischMadeCH - Warenkorb</title>
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
 </head>
@@ -18,12 +18,12 @@
           <li><a href="gallery.html">Galerie</a></li>
           <li><a href="werkstatt.html">Werkstatt</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
-          <li><a href="cart.html" class="active">Warenkorb (0)</a></li>
+          <li><a href="cart.html" class="active">Warenkorb <span class="cart-count" data-cart-count>0</span></a></li>
         </ul>
       </nav>
-      <div class="burger" id="burger">
+      <button class="burger" id="burger" aria-label="Menue oeffnen">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
     <div class="mobile-menu" id="mobile-menu">
       <a href="products.html">Kollektionen</a>
@@ -37,10 +37,10 @@
   <!-- Warenkorb -->
   <main class="container">
     <h1>Warenkorb</h1>
-    <p>Überprüfe deine Auswahl und gehe dann zur Kasse.</p>
+    <p>Ueberpruefe deine Auswahl und gehe dann zur Kasse.</p>
 
     <div id="cart-container" class="cart-container">
-      <!-- Wird per JS befüllt -->
+      <!-- Wird per JS befuellt -->
     </div>
 
     <div class="cart-summary">
@@ -57,72 +57,159 @@
   <footer>
     <div class="container footer-content">
       <div class="brand">TischMadeCH</div>
-      <p>© 2025 TischMadeCH – Handgefertigte Tische, Restaurierung & Szenografie</p>
+      <p>Ueberpruefe deine Auswahl und gehe dann zur Kasse.</p>
     </div>
   </footer>
 
   <script>
-    // Warenkorb aus localStorage laden
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    window.addEventListener('DOMContentLoaded', () => {
+      const fallbackFormatter = value => `CHF ${(Number(value) || 0).toFixed(2)}`;
+      const cartStore = window.TischMadeCart || {
+        read: () => [],
+        write: items => items,
+        update: () => {},
+        format: fallbackFormatter
+      };
 
-    const cartContainer = document.getElementById("cart-container");
-    const cartTotal = document.getElementById("cart-total");
+      let cart = Array.isArray(cartStore.read()) ? cartStore.read() : [];
+      const cartContainer = document.getElementById('cart-container');
+      const cartTotal = document.getElementById('cart-total');
+      const checkoutButton = document.getElementById('checkout');
 
-    function renderCart() {
-      cartContainer.innerHTML = "";
-      if(cart.length === 0){
-        cartContainer.innerHTML = "<p>Dein Warenkorb ist leer.</p>";
-        cartTotal.innerText = "CHF 0.00";
-        return;
+      const formatCurrency = value => (
+        typeof cartStore.format === 'function'
+          ? cartStore.format(value)
+          : fallbackFormatter(value)
+      );
+
+      const renderCart = () => {
+        if (!cartContainer) {
+          return;
+        }
+
+        if (!cart.length) {
+          cartContainer.innerHTML = '<p>Dein Warenkorb ist leer.</p>';
+          cartTotal.textContent = formatCurrency(0);
+          return;
+        }
+
+        let total = 0;
+
+        const markup = cart.map((item, index) => {
+          const unitPrice = Number(item?.price) || 0;
+          const quantity = Number(item?.qty) || 0;
+          const lineTotal = unitPrice * quantity;
+          total += lineTotal;
+
+          return `
+            <article class="cart-item" data-index="${index}">
+              <div class="item-info">
+                <img src="${item?.img || ''}" alt="${item?.title || 'Produkt'}" loading="lazy" />
+                <div>
+                  <h3>${item?.title || 'Produkt'}</h3>
+                  <p class="cart-item-price">${formatCurrency(unitPrice)}</p>
+                  <p class="cart-item-total">Zwischensumme: ${formatCurrency(lineTotal)}</p>
+                </div>
+              </div>
+              <div class="item-actions">
+                <div class="qty-control" aria-label="Menge anpassen">
+                  <button type="button" data-action="qty" data-step="-1" aria-label="Menge verringern">-</button>
+                  <span aria-live="polite">${quantity}</span>
+                  <button type="button" data-action="qty" data-step="1" aria-label="Menge erhoehen">+</button>
+                </div>
+                <button type="button" class="remove" data-action="remove">Entfernen</button>
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        cartContainer.innerHTML = markup;
+        cartTotal.textContent = formatCurrency(total);
+      };
+
+      const commitCart = () => {
+        cartStore.write(cart);
+        cartStore.update();
+      };
+
+      const refreshCart = () => {
+        cart = Array.isArray(cartStore.read()) ? cartStore.read() : [];
+        renderCart();
+      };
+
+      const adjustQuantity = (index, step) => {
+        const item = cart[index];
+        if (!item) {
+          return;
+        }
+
+        const currentQty = Number(item.qty) || 0;
+        const nextQty = currentQty + step;
+
+        if (nextQty <= 0) {
+          cart.splice(index, 1);
+        } else {
+          item.qty = nextQty;
+        }
+
+        commitCart();
+        refreshCart();
+      };
+
+      const removeItem = index => {
+        cart.splice(index, 1);
+        commitCart();
+        refreshCart();
+      };
+
+      if (cartContainer) {
+        cartContainer.addEventListener('click', event => {
+          const button = event.target.closest('button[data-action]');
+          if (!button) {
+            return;
+          }
+
+          const wrapper = button.closest('[data-index]');
+          const index = wrapper ? Number(wrapper.dataset.index) : NaN;
+          if (!Number.isFinite(index)) {
+            return;
+          }
+
+          if (button.dataset.action === 'qty') {
+            adjustQuantity(index, Number(button.dataset.step) || 0);
+          } else if (button.dataset.action === 'remove') {
+            removeItem(index);
+          }
+        });
       }
 
-      let sum = 0;
-      cart.forEach((item, index) => {
-        sum += item.price * item.qty;
-        const div = document.createElement("div");
-        div.className = "cart-item";
-        div.innerHTML = `
-          <div class="item-info">
-            <img src="${item.img}" alt="${item.title}" />
-            <div>
-              <h3>${item.title}</h3>
-              <p>CHF ${item.price.toFixed(2)}</p>
-              <p>Menge: 
-                <button onclick="updateQty(${index}, -1)">-</button>
-                ${item.qty}
-                <button onclick="updateQty(${index}, 1)">+</button>
-              </p>
-            </div>
-          </div>
-          <button class="remove" onclick="removeItem(${index})">Entfernen</button>
-        `;
-        cartContainer.appendChild(div);
-      });
-      cartTotal.innerText = "CHF " + sum.toFixed(2);
-    }
+      if (checkoutButton) {
+        checkoutButton.addEventListener('click', () => {
+          if (!cart.length) {
+            alert('Dein Warenkorb ist leer.');
+            return;
+          }
 
-    function updateQty(index, change){
-      cart[index].qty += change;
-      if(cart[index].qty <= 0){ cart.splice(index,1); }
-      localStorage.setItem("cart", JSON.stringify(cart));
-      renderCart();
-    }
-
-    function removeItem(index){
-      cart.splice(index,1);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      renderCart();
-    }
-
-    document.getElementById("checkout").addEventListener("click", ()=>{
-      if(cart.length === 0){
-        alert("Dein Warenkorb ist leer!");
-      } else {
-        alert("Checkout-Demo: Hier würdest du den Zahlungsprozess starten.");
+          alert('Checkout-Demo: Hier wuerdest du den Zahlungsprozess starten.');
+        });
       }
+
+      renderCart();
     });
-
-    renderCart();
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

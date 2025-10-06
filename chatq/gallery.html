@@ -1,70 +1,176 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TischMadeCH – Galerie</title>
+  <title>TischMadeCH - Galerie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="container topbar">
       <div class="brand"><a href="index.html">Tisch<br>Made<br>CH</a></div>
       <nav>
         <ul class="nav-links">
           <li><a href="products.html">Kollektionen</a></li>
-          <li><a href="gallery.html" class="active">Galerie</a></li>
+          <li><a href="gallery.html" class="active" aria-current="page">Galerie</a></li>
           <li><a href="werkstatt.html">Werkstatt</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
-          <li><a href="cart.html">Warenkorb (0)</a></li>
+          <li><a href="cart.html">Warenkorb <span class="cart-count" data-cart-count>0</span></a></li>
         </ul>
       </nav>
-      <div class="burger" id="burger">
+      <button class="burger" id="burger" aria-label="Menue oeffnen">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
-    <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <a href="products.html">Kollektionen</a>
-      <a href="gallery.html">Galerie</a>
+      <a href="gallery.html" aria-current="page">Galerie</a>
       <a href="werkstatt.html">Werkstatt</a>
       <a href="kontakt.html">Kontakt</a>
       <a href="cart.html">Warenkorb</a>
     </div>
   </header>
 
-  <!-- Galerie -->
-  <main class="container">
-    <h1>Galerie</h1>
-    <p>Einblicke in unsere Arbeit – Vorher & Nachher, Werkstatt und Inspiration.</p>
+  <main class="gallery-page">
+    <section class="gallery-hero" data-animate="fade">
+      <div class="gallery-hero-media" aria-hidden="true">
+        <div class="gallery-hero-pattern"></div>
+        <img src=".jpg/Bilder_0.jpg" alt="Massivholz Tisch" loading="lazy" />
+      </div>
+      <div class="gallery-hero-copy container">
+        <span class="kicker">Galerie</span>
+        <h1>Holzgeschichten in Bildern</h1>
+        <p>Vorher-Nachher, Werkstattmomente und individuelle Anfertigungen. Jede Serie zeigt, wie Charakterholz und sorgfaeltige Verarbeitung neue Lieblingsstuecke entstehen lassen.</p>
+      </div>
+    </section>
 
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="https://picsum.photos/seed/table1/600/400" alt="Vorher" />
-        <p class="caption">Vorher – alter Holztisch</p>
+    <section class="gallery-showcase" data-animate="stagger">
+      <div class="container">
+        <header class="gallery-intro">
+          <h2>Kuratiert nach Themen</h2>
+          <p>Wechsle zwischen Restaurierungen, neuen Kollektionen und Einblicke hinter die Kulissen. Alle Aufnahmen stammen direkt aus unserer Werkstatt in Zuerich.</p>
+        </header>
+
+        <div class="gallery-filters" role="group" aria-label="Galerie filtern">
+          <button type="button" class="chip is-active" data-gallery-filter="all">Alle</button>
+          <button type="button" class="chip" data-gallery-filter="restoration">Restaurierung</button>
+          <button type="button" class="chip" data-gallery-filter="custom">Massanfertigung</button>
+          <button type="button" class="chip" data-gallery-filter="workshop">Werkstatt</button>
+        </div>
+
+        <div class="gallery-mosaic" id="gallery-mosaic">
+          <article class="gallery-card" data-topic="restoration" data-animate-item>
+            <figure class="gallery-card-media">
+              <img src=".jpg/Bilder_14.jpg" alt="Restaurierter Salon Tisch" loading="lazy" />
+              <figcaption class="gallery-card-label">Vorher & Nachher</figcaption>
+            </figure>
+            <div class="gallery-card-body">
+              <h3>Salon Helvetia</h3>
+              <p>Originaler Salon-Tisch aus den 1920er Jahren. Lack entfernt, Maserung gebuerstet, Schellack neu aufgebaut.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card" data-topic="custom" data-animate-item>
+            <figure class="gallery-card-media">
+              <img src=".jpg/Bilder_0.jpg" alt="Massanfertigung Familientisch" loading="lazy" />
+              <figcaption class="gallery-card-label">Kollektion</figcaption>
+            </figure>
+            <div class="gallery-card-body">
+              <h3>Familientisch Jura</h3>
+              <p>Baumkanten-Platte aus Jura-Eiche mit unterschliffener Kante und optionaler Erweiterung.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card" data-topic="workshop" data-animate-item>
+            <figure class="gallery-card-media">
+              <img src=".jpg/Bilder_1.jpg" alt="Werkstatt Detail" loading="lazy" />
+              <figcaption class="gallery-card-label">Werkstatt</figcaption>
+            </figure>
+            <div class="gallery-card-body">
+              <h3>Messing & Nussbaum</h3>
+              <p>Handgezogene Messingkanten werden mit Nussbaumplatten verpresst und anschliessend geölt.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card" data-topic="custom" data-animate-item>
+            <figure class="gallery-card-media">
+              <img src=".jpg/Bilder_2.jpg" alt="Konferenztisch Signature" loading="lazy" />
+              <figcaption class="gallery-card-label">Massarbeit</figcaption>
+            </figure>
+            <div class="gallery-card-body">
+              <h3>Signature Sihl</h3>
+              <p>Konferenztisch mit eingelassener Steinplatte und verdecktem Kabelmanagement.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card" data-topic="restoration" data-animate-item>
+            <figure class="gallery-card-media">
+              <img src=".jpg/Bilder_0.jpg" alt="Aufbereitung Tischplatte" loading="lazy" />
+              <figcaption class="gallery-card-label">Restaurierung</figcaption>
+            </figure>
+            <div class="gallery-card-body">
+              <h3>Patina bewahren</h3>
+              <p>Tischplatte aus Kirsche: Kratzer entfernt, Maserung aufgefrischt, Schutzlack erneuert.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card" data-topic="workshop" data-animate-item>
+            <figure class="gallery-card-media">
+              <img src=".jpg/Bilder_14.jpg" alt="Oelauftrag" loading="lazy" />
+              <figcaption class="gallery-card-label">Werkstatt</figcaption>
+            </figure>
+            <div class="gallery-card-body">
+              <h3>Oelauftrag</h3>
+              <p>Feiner Oelauftrag in mehreren Schichten sorgt fuer eine samtige Haptik und betont die Maserung.</p>
+            </div>
+          </article>
+        </div>
       </div>
-      <div class="gallery-item">
-        <img src="https://picsum.photos/seed/table2/600/400" alt="Nachher" />
-        <p class="caption">Nachher – restauriert & geölt</p>
-      </div>
-      <div class="gallery-item">
-        <img src="https://picsum.photos/seed/workshop/600/400" alt="Werkstatt" />
-        <p class="caption">Blick in die Werkstatt</p>
-      </div>
-      <div class="gallery-item">
-        <img src="https://picsum.photos/seed/custom/600/400" alt="Custom Design" />
-        <p class="caption">Custom Design für Kundenprojekt</p>
-      </div>
-    </div>
+    </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container footer-content">
       <div class="brand">TischMadeCH</div>
-      <p>© 2025 TischMadeCH – Handgefertigte Tische, Restaurierung & Szenografie</p>
+      <p>&copy; 2025 TischMadeCH - Handgefertigte Tische, Restaurierung &amp; Szenografie</p>
     </div>
   </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = Array.from(document.querySelectorAll('[data-gallery-filter]'));
+      const mosaic = document.getElementById('gallery-mosaic');
+      const cards = mosaic ? Array.from(mosaic.querySelectorAll('[data-topic]')) : [];
+
+      if (!filterButtons.length || !cards.length) {
+        return;
+      }
+
+      const setActive = topic => {
+        filterButtons.forEach(button => {
+          const isActive = button.dataset.galleryFilter === topic;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive);
+        });
+
+        cards.forEach(card => {
+          const matches = topic === 'all' || card.dataset.topic === topic;
+          card.classList.toggle('is-hidden', !matches);
+        });
+      };
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const topic = button.dataset.galleryFilter || 'all';
+          setActive(topic);
+        });
+      });
+
+      setActive('all');
+    });
+  </script>
 </body>
 </html>

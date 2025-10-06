@@ -1,14 +1,14 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TischMadeCH – Produkt</title>
+  <title>TischMadeCH - Produkt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="container topbar">
       <div class="brand"><a href="index.html">Tisch<br>Made<br>CH</a></div>
@@ -18,14 +18,14 @@
           <li><a href="gallery.html">Galerie</a></li>
           <li><a href="werkstatt.html">Werkstatt</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
-          <li><a href="cart.html">Warenkorb (0)</a></li>
+          <li><a href="cart.html">Warenkorb <span class="cart-count" data-cart-count>0</span></a></li>
         </ul>
       </nav>
-      <div class="burger" id="burger">
+      <button class="burger" id="burger" aria-label="Menue oeffnen">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
-    <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <a href="products.html">Kollektionen</a>
       <a href="gallery.html">Galerie</a>
       <a href="werkstatt.html">Werkstatt</a>
@@ -34,59 +34,326 @@
     </div>
   </header>
 
-  <!-- Produktdetails -->
-  <main class="container">
-    <div id="product-detail" class="product-detail">
-      <!-- Inhalt wird per JS geladen -->
+  <main class="product-page">
+    <div class="container product-shell">
+      <nav class="breadcrumb" aria-label="Brotkrumen">
+        <a href="index.html">Start</a>
+        <span aria-hidden="true">/</span>
+        <a href="products.html">Kollektionen</a>
+        <span aria-hidden="true">/</span>
+        <span id="breadcrumb-current">Produkt</span>
+      </nav>
+
+      <section class="product-stage" id="product-detail" aria-live="polite">
+        <!-- Inhalt wird durch Script eingefuegt -->
+      </section>
+
+      <section class="product-panels" id="product-panels">
+        <!-- Zusatzinformationen werden durch Script eingefuegt -->
+      </section>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container footer-content">
       <div class="brand">TischMadeCH</div>
-      <p>© 2025 TischMadeCH – Handgefertigte Tische, Restaurierung & Szenografie</p>
+      <p>&copy; 2025 TischMadeCH - Handgefertigte Tische, Restaurierung &amp; Szenografie</p>
     </div>
   </footer>
 
   <script>
-    // Beispiel-Produkte (wie in products.html)
-    const products = [];
-    for(let i=1; i<=12; i++){
-      products.push({
-        id: i,
-        title: ['Eichen-Tisch','Antiker Tisch','Design Tisch','Custom Tisch'][i%4] + ' ' + i,
-        price: (1200 + i*100) + '.00',
-        img: `https://picsum.photos/seed/tisch${i}/800/600`,
-        desc: "Ein einzigartiger handgefertigter Tisch. Lieferzeit ca. 3–4 Wochen. Lieferung in der ganzen Schweiz.",
-        material: "Eiche massiv, geölt. Pflege mit feuchtem Tuch."
-      });
-    }
+    const catalogue = [
+      {
+        id: 'atelier-aare',
+        title: 'Atelier Aare',
+        price: 3490,
+        filters: ['modern'],
+        image: '.jpg/Bilder_0.jpg',
+        gallery: ['.jpg/Bilder_0.jpg', '.jpg/Bilder_1.jpg', '.jpg/Bilder_2.jpg'],
+        tagline: 'Schwebender Esstisch mit handgeschmiedeten Stahlwangen fuer grosszuegige Wohnbereiche.',
+        description: 'Die Platte aus geraeucherter Eiche ruht auf feinen Stahlwangen. Jeder Tisch wird individuell gefertigt und kann in Laenge, Breite und Untergestell angepasst werden.',
+        delivery: 'Lieferzeit 6 Wochen, Aufbau in der ganzen Schweiz inklusive.',
+        materials: ['Eiche geraeuchert', 'Schwarzstahl mit Klarlack', 'Naturbelassenes Oel (lebensmittelecht)'],
+        dimensions: ['Standard: 220 x 95 x 75 cm', 'Sondermasse bis 320 cm Laenge', 'Plattenstaerke 38 mm'],
+        meta: ['220 x 95 cm', 'Eiche & Schwarzstahl', 'Individuelle Fertigung'],
+        care: 'Zur Pflege reicht ein leicht angefeuchtetes Baumwolltuch. Bei Bedarf kann eine duenne Schicht Pflegeoel aufgetragen werden.'
+      },
+      {
+        id: 'werkbank-limmat',
+        title: 'Werkbank Limmat',
+        price: 2890,
+        filters: ['custom'],
+        image: '.jpg/Bilder_1.jpg',
+        gallery: ['.jpg/Bilder_1.jpg', '.jpg/Bilder_0.jpg', '.jpg/Bilder_14.jpg'],
+        tagline: 'Vielseitiger Werk- und Kuechentisch mit gezinkter Schweizer Kante.',
+        description: 'Die Werkbank Limmat verbindet robuste Verarbeitung mit eleganter Optik. Ideal fuer offene Wohnkuechen oder Atelierbereiche. Optional mit versteckten Kabelkanaelen erhaeltlich.',
+        delivery: 'Lieferzeit 5 bis 7 Wochen. Lieferung inkl. Montage und Feinjustierung vor Ort.',
+        materials: ['Nussbaum massiv', 'Messingdetails fein poliert', 'Hartwachs-Oel seidenmatt'],
+        dimensions: ['Standard: 200 x 85 x 92 cm', 'Hoehe auf Wunsch einstellbar', 'Schubladen in Vollauszug'],
+        meta: ['200 x 85 cm', 'Nussbaum', 'Flexible Einteilung'],
+        care: 'Holzoberflaeche regelmaessig mit trockenem Tuch abstauben. Hartnaeckige Flecken mit wenig Naturseife behandeln.'
+      },
+      {
+        id: 'salon-helvetia',
+        title: 'Salon Helvetia',
+        price: 2590,
+        filters: ['antique'],
+        image: '.jpg/Bilder_14.jpg',
+        gallery: ['.jpg/Bilder_14.jpg', '.jpg/Bilder_1.jpg', '.jpg/Bilder_0.jpg'],
+        tagline: 'Restaurierter Salon-Tisch mit historischen Beschlaegen.',
+        description: 'Ein originaler Salon-Tisch aus den 1920er Jahren, in unserer Werkstatt komplett aufgearbeitet. Die Maserung wurde sanft gebuerstet und mit Schellack veredelt.',
+        delivery: 'Lieferzeit 3 Wochen. Lieferung inkl. Schutzhuellen und Pflegeanleitung.',
+        materials: ['Fichte mit Schellack', 'Messingbeschlaege handpoliert', 'Originale Schubladen'],
+        dimensions: ['190 x 90 x 76 cm', 'Sonderanfertigungen nicht moeglich', 'Gewicht 58 kg'],
+        meta: ['190 x 90 cm', 'Fichte restauriert', 'Einzelstueck'],
+        care: 'Nur trockenes Staubtuch verwenden. Keine feuchten Reiniger einsetzen. Bei Bedarf Schellackpolitur auffrischen lassen.'
+      },
+      {
+        id: 'studio-rigi',
+        title: 'Studio Rigi',
+        price: 3150,
+        filters: ['modern'],
+        image: '.jpg/Bilder_2.jpg',
+        gallery: ['.jpg/Bilder_2.jpg', '.jpg/Bilder_0.jpg', '.jpg/Bilder_1.jpg'],
+        tagline: 'Puristischer Studio-Tisch mit gefasten Kanten.',
+        description: 'Studio Rigi bietet klare Linien und praezise Kanten. Ideal fuer Besprechungsraeume oder minimalistische Wohnbereiche. Kabeldurchfuehrungen lassen sich dezent integrieren.',
+        delivery: 'Lieferzeit 6 bis 8 Wochen inkl. Lieferung, Montage und Ausrichtung.',
+        materials: ['Eiche hell geoelt', 'Pulverbeschichteter Stahl', 'Mikrofase 2 mm'],
+        dimensions: ['210 x 95 x 74 cm', 'Breite bis 110 cm moeglich', 'Fussabstand 190 cm'],
+        meta: ['210 x 95 cm', 'Eiche hell', 'Kabeloption'],
+        care: 'Oberflaeche mit trockenem oder leicht feuchtem Tuch reinigen. Bei Bedarf mit Pflegeoel auffrischen.'
+      },
+      {
+        id: 'familientisch-jura',
+        title: 'Familientisch Jura',
+        price: 3790,
+        filters: ['custom'],
+        image: '.jpg/Bilder_0.jpg',
+        gallery: ['.jpg/Bilder_0.jpg', '.jpg/Bilder_2.jpg', '.jpg/Bilder_14.jpg'],
+        tagline: 'Robuster Familientisch mit behauener Baumkante.',
+        description: 'Ein Mittelpunkt fuer jedes Zuhause. Die Baumkante wird per Hand geformt und macht jeden Tisch zum Unikat. Optional mit Ansteckplatten fuer grosse Runden.',
+        delivery: 'Lieferzeit 8 Wochen. Aufbau vor Ort sowie Ausrichtung enthalten.',
+        materials: ['Jura-Eiche', 'Holzduebel-Verbindungen', 'Naturharz-Oel'],
+        dimensions: ['240 x 100 x 76 cm', 'Ansteckplatten je 40 cm', 'Gewicht ca. 85 kg'],
+        meta: ['240 x 100 cm', 'Jura-Eiche', 'Erweiterbar'],
+        care: 'Bei Bedarf leicht nachoelen. Hitze und Feuchtigkeit vermeiden, Untersetzer verwenden.'
+      },
+      {
+        id: 'antik-luzern',
+        title: 'Antik Luzern',
+        price: 2450,
+        filters: ['antique'],
+        image: '.jpg/Bilder_14.jpg',
+        gallery: ['.jpg/Bilder_14.jpg', '.jpg/Bilder_0.jpg', '.jpg/Bilder_1.jpg'],
+        tagline: 'Original Luzerner Biedermeier Tisch, sorgfaeltig restauriert.',
+        description: 'Dieses Original aus Luzern wurde entlackt, neu verleimt und mit einer duennen Schicht Naturwachs versehen. Perfekt fuer klassische Esszimmer oder Entrees.',
+        delivery: 'Lieferzeit 4 Wochen inkl. Lieferung und Montage.',
+        materials: ['Kirsche massiv', 'Naturwachs seidenmatt', 'Originalbeschlaege'],
+        dimensions: ['180 x 88 x 75 cm', 'Auszug 45 cm pro Seite', 'Gewicht 52 kg'],
+        meta: ['180 x 88 cm', 'Kirsche', 'Restauriert'],
+        care: 'Mit trockenem Baumwolltuch abstauben. Keine chemischen Reiniger verwenden. Wachs bei Bedarf erneuern.'
+      },
+      {
+        id: 'atelier-albis',
+        title: 'Atelier Albis',
+        price: 2990,
+        filters: ['modern'],
+        image: '.jpg/Bilder_1.jpg',
+        gallery: ['.jpg/Bilder_1.jpg', '.jpg/Bilder_2.jpg', '.jpg/Bilder_0.jpg'],
+        tagline: 'Asymmetrisches Untergestell und dezente Messingfuesse.',
+        description: 'Atelier Albis bringt Dynamik in den Raum. Das Untergestell wird auftragsbezogen gefertigt und harmoniert dank Messingdetails mit warmen Wohnkonzepten.',
+        delivery: 'Lieferzeit 6 Wochen. Lieferung und Montage inklusive Feinschliff.',
+        materials: ['Raeuchereiche', 'Messing satiniert', 'Hartwachs-Oel'],
+        dimensions: ['200 x 90 x 75 cm', 'Sondermasse auf Anfrage', 'Untergestell asymmetrisch'],
+        meta: ['200 x 90 cm', 'Raeuchereiche', 'Massanfertigung'],
+        care: 'Regelmaessig mit trockenem Tuch reinigen. Messing kann bei Bedarf nachpoliert werden.'
+      },
+      {
+        id: 'signature-sihl',
+        title: 'Signature Sihl',
+        price: 4250,
+        filters: ['custom'],
+        image: '.jpg/Bilder_2.jpg',
+        gallery: ['.jpg/Bilder_2.jpg', '.jpg/Bilder_1.jpg', '.jpg/Bilder_14.jpg'],
+        tagline: 'Boardroom-Tisch mit eingelassener Steinplatte.',
+        description: 'Signature Sihl kombiniert Holz und Naturstein. Verdeckte Technik, Kabelmanagement und Oberflaeche nach Wunsch machen ihn zur hochwertigen Wahl fuer Besprechungsraeume.',
+        delivery: 'Lieferzeit 9 bis 10 Wochen inkl. Lieferung, Aufbau und technischem Anschluss.',
+        materials: ['Eiche dunkel', 'Granit Nero Assoluto', 'Technikmodule verdeckt'],
+        dimensions: ['260 x 105 x 75 cm', 'Steinplatte 120 x 45 cm', 'Optional integrierte Steckdosen'],
+        meta: ['260 x 105 cm', 'Eiche & Granit', 'Auftragsarbeit'],
+        care: 'Stein mit mildem Reiniger pflegen, Holz regelmaessig nachoelen. Keine scheuernden Mittel verwenden.'
+      }
+    ];
 
-    // Produkt-ID aus URL holen (?id=3)
     const params = new URLSearchParams(window.location.search);
-    const productId = parseInt(params.get("id")) || 1;
-    const product = products.find(p=>p.id===productId);
+    const productId = params.get('id') || 'atelier-aare';
+    const product = catalogue.find(item => item.id === productId) || catalogue[0];
 
-    // Rendern
-    const container = document.getElementById("product-detail");
-    if(product){
-      container.innerHTML = `
-        <div class="product-wrapper">
-          <img src="${product.img}" alt="${product.title}" />
-          <div class="product-info">
-            <h1>${product.title}</h1>
-            <p class="price">CHF ${product.price}</p>
-            <p>${product.desc}</p>
-            <details>
-              <summary>Material & Pflege</summary>
-              <p>${product.material}</p>
-            </details>
-            <a href="cart.html" class="btn">In den Warenkorb</a>
-          </div>
+    const detailRoot = document.getElementById('product-detail');
+    const panelsRoot = document.getElementById('product-panels');
+    const breadcrumbCurrent = document.getElementById('breadcrumb-current');
+
+    const fallbackCurrencyFormatter = new Intl.NumberFormat('de-CH', {
+      style: 'currency',
+      currency: 'CHF',
+      minimumFractionDigits: 2
+    });
+    const formatPrice = window.TischMadeCart && typeof window.TischMadeCart.format === 'function'
+      ? window.TischMadeCart.format
+      : (value => fallbackCurrencyFormatter.format(Number(value) || 0));
+
+    function renderProductView(item) {
+      if (!detailRoot || !item) {
+        return;
+      }
+
+      if (breadcrumbCurrent) {
+        breadcrumbCurrent.textContent = item.title;
+      }
+
+      const galleryImages = Array.isArray(item.gallery) && item.gallery.length ? item.gallery : [item.image];
+      const displayFilters = Array.isArray(item.filters) && item.filters.length
+        ? item.filters.map(filterLabel => filterLabel.charAt(0).toUpperCase() + filterLabel.slice(1)).join(' / ')
+        : 'Kollektion';
+
+      detailRoot.innerHTML = `
+        <div class="product-stage-grid">
+          <section class="product-media" aria-label="Produktbilder">
+            <figure class="product-hero-image">
+              <img src="${galleryImages[0]}" alt="${item.title}" id="product-main-image" loading="lazy" />
+            </figure>
+            <div class="product-thumbnails" id="product-thumbnails">
+              ${galleryImages.map((src, index) => `
+                <button type="button" class="product-thumb ${index === 0 ? 'is-active' : ''}" data-index="${index}" data-src="${src}">
+                  <img src="${src}" alt="${item.title} Ansicht ${index + 1}" loading="lazy" />
+                </button>
+              `).join('')}
+            </div>
+          </section>
+          <section class="product-summary">
+            <span class="product-tag">${displayFilters}</span>
+            <h1>${item.title}</h1>
+            <p class="product-lead">${item.tagline}</p>
+            <div class="product-price-block">
+              <span class="product-price">${formatPrice(item.price)}</span>
+              <span class="product-lead-time">${item.delivery}</span>
+            </div>
+            <div class="product-quantity" aria-label="Anzahl waehlen">
+              <label for="product-quantity-input">Anzahl</label>
+              <div class="product-qty-control">
+                <button type="button" data-action="qty" data-step="-1" aria-label="Anzahl verringern">-</button>
+                <input id="product-quantity-input" type="number" min="1" step="1" value="1" />
+                <button type="button" data-action="qty" data-step="1" aria-label="Anzahl erhoehen">+</button>
+              </div>
+            </div>
+            <div class="product-cta">
+              <button type="button" class="btn product-add-to-cart" id="add-to-cart">In den Warenkorb</button>
+              <p class="product-status" id="product-status" role="status" aria-live="polite"></p>
+            </div>
+            <ul class="product-features">
+              ${item.meta.map(feature => `<li>${feature}</li>`).join('')}
+            </ul>
+          </section>
         </div>
       `;
+
+      if (panelsRoot) {
+        panelsRoot.innerHTML = `
+          <article class="product-panel">
+            <h2>Beschreibung</h2>
+            <p>${item.description}</p>
+          </article>
+          <article class="product-panel">
+            <h2>Materialien</h2>
+            <ul>${item.materials.map(entry => `<li>${entry}</li>`).join('')}</ul>
+          </article>
+          <article class="product-panel">
+            <h2>Abmessungen</h2>
+            <ul>${item.dimensions.map(entry => `<li>${entry}</li>`).join('')}</ul>
+          </article>
+          <article class="product-panel">
+            <h2>Pflegehinweise</h2>
+            <p>${item.care}</p>
+          </article>
+        `;
+      }
+
+      setupInteractions(item);
     }
+
+    function setupInteractions(item) {
+      const mainImage = document.getElementById('product-main-image');
+      const thumbs = Array.from(document.querySelectorAll('.product-thumb'));
+      const quantityInput = document.getElementById('product-quantity-input');
+      const qtyButtons = Array.from(document.querySelectorAll('.product-qty-control [data-action="qty"]'));
+      const addButton = document.getElementById('add-to-cart');
+      const statusNode = document.getElementById('product-status');
+
+      thumbs.forEach(button => {
+        button.addEventListener('click', () => {
+          const src = button.dataset.src;
+          if (mainImage && src) {
+            mainImage.src = src;
+          }
+          thumbs.forEach(btn => btn.classList.remove('is-active'));
+          button.classList.add('is-active');
+        });
+      });
+
+      qtyButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          if (!quantityInput) {
+            return;
+          }
+          const current = Number(quantityInput.value) || 1;
+          const step = Number(button.dataset.step) || 0;
+          const next = Math.max(1, current + step);
+          quantityInput.value = String(next);
+        });
+      });
+
+          if (addButton) {
+      addButton.addEventListener('click', () => {
+        const qty = quantityInput ? Math.max(1, Number(quantityInput.value) || 1) : 1;
+        const payload = {
+          id: item.id,
+          title: item.title,
+          price: item.price,
+          img: item.image,
+          qty
+        };
+
+        addButton.classList.remove('is-adding');
+          void addButton.offsetWidth;
+          addButton.classList.add('is-adding');
+          window.setTimeout(() => addButton.classList.remove('is-adding'), 600);
+
+        window.TischMadeCart.add(payload);
+
+          if (statusNode) {
+            statusNode.textContent = `${qty}x ${item.title} wurde in den Warenkorb gelegt.`;
+          }
+
+          addButton.classList.add('is-added');
+          addButton.textContent = 'Im Warenkorb';
+          window.setTimeout(() => {
+            addButton.classList.remove('is-added');
+            addButton.textContent = 'In den Warenkorb';
+          }, 3200);
+        });
+      }
+    }
+
+    renderProductView(product);
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

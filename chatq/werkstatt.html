@@ -1,102 +1,138 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TischMadeCH – Werkstatt & Läden</title>
+  <title>TischMadeCH - Werkstatt & Standorte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- Google Maps API einbinden (API Key nötig) -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOVQL-KSGGsh3dJ5dkYBqzpha_Tryk2Ro"></script>
-
-  <script>
-    function initMap() {
-      // Karte auf Zürich zentrieren
-      var center = { lat: 47.3715, lng: 8.5450 };
-
-      var map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 15,
-        center: center,
-      });
-
-      // Standorte mit exakten Koordinaten
-      var locations = [
-        { lat: 47.372258, lng: 8.544123, title: "Marktgasse 4 – Showroom & Beratung" },
-        { lat: 47.370490, lng: 8.545040, title: "Oberdorfstrasse 17 – Atelier & Restaurierung" },
-        { lat: 47.367970, lng: 8.547010, title: "Rämistrasse 4 – Werkstatt & Fertigung" }
-      ];
-
-      locations.forEach(loc => {
-        new google.maps.Marker({
-          position: { lat: loc.lat, lng: loc.lng },
-          map: map,
-          title: loc.title
-        });
-      });
-    }
-  </script>
-
+  <script defer src="script.js"></script>
 </head>
-<body onload="initMap()">
-  <!-- Header -->
-  <title>TischMade – Werkstatt & Läden</title>
-    <header class="header">
+<body>
+  <header class="header">
     <div class="container topbar">
       <div class="brand"><a href="index.html">Tisch<br>Made<br>CH</a></div>
       <nav>
         <ul class="nav-links">
           <li><a href="products.html">Kollektionen</a></li>
           <li><a href="gallery.html">Galerie</a></li>
-          <li><a href="werkstatt.html">Werkstatt</a></li>
-          <li><a href="kontakt.html" class="active">Kontakt</a></li>
-          <li><a href="cart.html">Warenkorb (0)</a></li>
+          <li><a href="werkstatt.html" class="active" aria-current="page">Werkstatt</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="cart.html">Warenkorb <span class="cart-count" data-cart-count>0</span></a></li>
         </ul>
       </nav>
-      <div class="burger" id="burger">
+      <button class="burger" id="burger" aria-label="Menue oeffnen">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
-    <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <a href="products.html">Kollektionen</a>
       <a href="gallery.html">Galerie</a>
-      <a href="werkstatt.html">Werkstatt</a>
+      <a href="werkstatt.html" aria-current="page">Werkstatt</a>
       <a href="kontakt.html">Kontakt</a>
       <a href="cart.html">Warenkorb</a>
     </div>
   </header>
 
-  <!-- Werkstatt -->
-  <main class="container">
-    <h1>Werkstatt & Läden</h1>
-    <p>Besuche uns an unseren Standorten in Zürich. Hier entstehen unsere einzigartigen Tische und Projekte.</p>
+  <main class="werkstatt-page">
+    <section class="werkstatt-hero" data-animate="fade">
+      <div class="container werkstatt-hero-grid">
+        <div class="werkstatt-hero-copy">
+          <span class="kicker">Werkstatt</span>
+          <h1>In unserer Manufaktur</h1>
+          <p>Von der Baumkante bis zum letzten Schliff: Hier entstehen Unikate, werden Klassiker restauriert und Materialien kombiniert. Drei Standorte in Zuerich bilden unser handwerkliches Zuhause.</p>
+        </div>
+        <div class="werkstatt-hero-media">
+          <img src=".jpg/Bilder_1.jpg" alt="Werkstatt Impression" loading="lazy" />
+        </div>
+      </div>
+    </section>
 
-    <div class="addresses">
-      <div class="address-card">
-        <h3>Marktgasse 4</h3>
-        <p>8001 Zürich</p>
-        <p>Showroom & Beratung</p>
-      </div>
-      <div class="address-card">
-        <h3>Oberdorfstrasse 17</h3>
-        <p>8001 Zürich</p>
-        <p>Atelier & Restaurierung</p>
-      </div>
-      <div class="address-card">
-        <h3>Rämistrasse 4</h3>
-        <p>8001 Zürich</p>
-        <p>Werkstatt & Fertigung</p>
-      </div>
-    </div>
+    <section class="werkstatt-overview" data-animate="stagger">
+      <div class="container">
+        <header class="werkstatt-intro">
+          <h2>Standorte & Werkbankschwerpunkte</h2>
+          <p>Alle Werkstaetten liegen im Herzen von Zuerich. Jeder Ort hat seinen eigenen Fokus – Beratung, Restaurierung, Fertigung.</p>
+        </header>
+        <div class="werkstatt-locations" id="werkstatt-locations">
+          <article class="werkstatt-card" data-animate-item>
+            <header>
+              <h3>Marktgasse 4</h3>
+              <span class="werkstatt-tag">Showroom & Beratung</span>
+            </header>
+            <p>Historische Altstadtlage. Hier zeigen wir Materialmuster, Kollektionen und besprechen individuelle Projekte.</p>
+            <dl class="werkstatt-meta">
+              <div><dt>Adresse</dt><dd>Marktgasse 4, 8001 Zuerich</dd></div>
+              <div><dt>Oeffnungszeiten</dt><dd>Di – Sa, 10 – 18 Uhr</dd></div>
+              <div><dt>Kontakt</dt><dd>+41 44 123 45 67</dd></div>
+            </dl>
+          </article>
 
-    <!-- Karte -->
-    <div id="map" style="width:100%; height:500px; margin-top:20px;"></div>
+          <article class="werkstatt-card" data-animate-item>
+            <header>
+              <h3>Oberdorfstrasse 17</h3>
+              <span class="werkstatt-tag">Atelier & Restaurierung</span>
+            </header>
+            <p>Hier pflegen wir Klassiker. Vom Biedermeier bis zum Mid-Century Design wird jedes Detail behutsam erneuert.</p>
+            <dl class="werkstatt-meta">
+              <div><dt>Adresse</dt><dd>Oberdorfstrasse 17, 8001 Zuerich</dd></div>
+              <div><dt>Schwerpunkte</dt><dd>Schellack, Furnierarbeiten, Oberflaechenschutz</dd></div>
+              <div><dt>Werkstatttermin</dt><dd>Nach Vereinbarung</dd></div>
+            </dl>
+          </article>
+
+          <article class="werkstatt-card" data-animate-item>
+            <header>
+              <h3>Ruemistrasse 4</h3>
+              <span class="werkstatt-tag">Fertigung & Montage</span>
+            </header>
+            <p>Unsere Manufaktur fuer Massivholz. CNC, Hobelbank und Oelstation arbeiten hier Hand in Hand.</p>
+            <dl class="werkstatt-meta">
+              <div><dt>Adresse</dt><dd>Ruemistrasse 4, 8001 Zuerich</dd></div>
+              <div><dt>Maschinenpark</dt><dd>CNC, Bandsaege, Schleifzentrum</dd></div>
+              <div><dt>Abholung</dt><dd>Mo – Fr, 08 – 17 Uhr</dd></div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="werkstatt-process" data-animate="up">
+      <div class="container werkstatt-process-grid">
+        <div class="werkstatt-process-copy">
+          <h2>So entstehen Ihre Tische</h2>
+          <ol>
+            <li><strong>Materialauswahl:</strong> regionale Eichen, Nussbaum und Kirsche, geprueft nach Struktur und Farbe.</li>
+            <li><strong>Verarbeitung:</strong> Verbindungstechnik, Massivholzverleimung und CNC-Bearbeitung fuer praezise Passform.</li>
+            <li><strong>Finish:</strong> Naturharz-Oele, Hartwachs oder Schellack – angepasst an Nutzung und Patina.</li>
+          </ol>
+        </div>
+        <aside class="werkstatt-process-aside">
+          <figure>
+            <img src=".jpg/Bilder_2.jpg" alt="Handwerk Detail" loading="lazy" />
+            <figcaption>Detailarbeit in der Fertigung: gefaste Kanten, geölte Oberflaechen.</figcaption>
+          </figure>
+        </aside>
+      </div>
+    </section>
+
+    <section class="werkstatt-map" data-animate="fade">
+      <div class="container">
+        <div class="werkstatt-map-header">
+          <h2>Alle Standorte auf einen Blick</h2>
+          <p>In der Karte findest du unsere drei Werkstaetten in Zuerich. Klicke auf einen Marker fuer Details.</p>
+        </div>
+        <div class="map-shell">
+          <iframe title="Standorte TischMadeCH" src="https://www.google.com/maps/d/u/0/embed?mid=1ZRCBCVutQZqgEkwazaQmTDcor-xozcI&ehbc=2E312F" width="640" height="480"><allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container footer-content">
       <div class="brand">TischMadeCH</div>
-      <p>© 2025 TischMadeCH – Handgefertigte Tische, Restaurierung & Szenografie</p>
+      <p>&copy; 2025 TischMadeCH - Handgefertigte Tische, Restaurierung &amp; Szenografie</p>
     </div>
   </footer>
 </body>

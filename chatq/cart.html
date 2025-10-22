@@ -35,6 +35,13 @@
   </header>
 
   <!-- Warenkorb -->
+    <section class="container cart-progress" aria-label="Bestellschritte" data-animate="fade">
+      <ol class="cart-progress-steps">
+        <li class="is-active">Warenkorb</li>
+        <li>Details</li>
+        <li>Abschluss</li>
+      </ol>
+    </section>
   <main class="container">
     <h1>Warenkorb</h1>
     <p>Ueberpruefe deine Auswahl und gehe dann zur Kasse.</p>
@@ -45,6 +52,22 @@
 
     <div class="cart-summary">
       <strong>Gesamtsumme: </strong><span id="cart-total">CHF 0.00</span>
+    </div>
+    <div class="cart-trust" data-animate="up">
+      <div class="cart-trust-item">
+        <strong>Lieferung & Montage</strong>
+        <span>In der ganzen Schweiz inklusive.</span>
+      </div>
+      <div class="cart-trust-separator" aria-hidden="true"></div>
+      <div class="cart-trust-item">
+        <strong>Handwerk</strong>
+        <span>Massivholz, individuell gefertigt.</span>
+      </div>
+      <div class="cart-trust-separator" aria-hidden="true"></div>
+      <div class="cart-trust-item">
+        <strong>Sichere Zahlung</strong>
+        <span>Auf Rechnung oder vor Ort.</span>
+      </div>
     </div>
 
     <div class="cart-actions">

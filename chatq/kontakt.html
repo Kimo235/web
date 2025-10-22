@@ -1,48 +1,15 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TischMade – Kontakt</title>
+  <title>TischMadeCH - Kontakt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    body { font-family: sans-serif; margin:0; }
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 40px;
-      margin-top: 30px;
-    }
-    .contact-form, .contact-aside {
-      background: #ded3bb;
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    .contact-form h2 { margin-bottom: 16px; }
-    .field { margin-bottom: 16px; }
-    .field label { display:block; font-weight:600; margin-bottom:6px; }
-    .field input, .field select, .field textarea {
-      width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:1rem;
-    }
-    .consent { display:flex; align-items:flex-start; gap:8px; margin-bottom:16px; }
-    .btn {
-      background:#a78f6c; color:#000000; border:none;
-      padding:12px 20px; border-radius:8px;
-      cursor:pointer; font-size:1rem;
-    }
-    .btn:hover { background: #554a35; }
-    .contact-aside h3 { margin-top:0; }
-    #map { width:100%; height:200px; margin-top:16px; border-radius:8px; }
-    @media(max-width: 768px) {
-      .contact-layout { grid-template-columns: 1fr; }
-    }
-  </style>
+  <script defer src="script.js"></script>
 </head>
 <body>
   <header class="header">
-    <!-- dein Header unverändert -->
-     <header class="header">
     <div class="container topbar">
       <div class="brand"><a href="index.html">Tisch<br>Made<br>CH</a></div>
       <nav>
@@ -50,127 +17,138 @@
           <li><a href="products.html">Kollektionen</a></li>
           <li><a href="gallery.html">Galerie</a></li>
           <li><a href="werkstatt.html">Werkstatt</a></li>
-          <li><a href="kontakt.html">Kontakt</a></li>
-          <li><a href="cart.html">Warenkorb (0)</a></li>
+          <li><a href="kontakt.html" class="active" aria-current="page">Kontakt</a></li>
+          <li><a href="cart.html">Warenkorb <span class="cart-count" data-cart-count>0</span></a></li>
         </ul>
       </nav>
-      <div class="burger" id="burger">
+      <button class="burger" id="burger" aria-label="Menue oeffnen">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
-    <!-- Mobile Menü -->
-    <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <a href="products.html">Kollektionen</a>
       <a href="gallery.html">Galerie</a>
       <a href="werkstatt.html">Werkstatt</a>
-      <a href="kontakt.html">Kontakt</a>
+      <a href="kontakt.html" aria-current="page">Kontakt</a>
       <a href="cart.html">Warenkorb</a>
     </div>
   </header>
-  </header>
 
-  <main class="container">
-    <h1>Kontakt</h1>
-    <p>Erzähl uns kurz von deinem Projekt – wir melden uns zeitnah bei dir.</p>
-
-    <div class="contact-layout">
-      <!-- Kontaktformular -->
-      <form
-        id="contact-form"
-        class="contact-form"
-        method="POST"
-        action="https://formspree.io/f/xkgqbzdv"
-      >
-        <h2>Nachricht senden</h2>
-
-        <div class="field">
-          <label for="name">Name*</label>
-          <input id="name" name="Name" type="text" required />
+  <main class="kontakt-page">
+    <section class="kontakt-hero" data-animate="fade">
+      <div class="container kontakt-hero-grid">
+        <div class="kontakt-hero-copy">
+          <span class="kicker">Kontakt</span>
+          <h1>Wir freuen uns auf Ihr Projekt</h1>
+          <p>Massanfertigung, Restaurierung oder Szenografie – wir beraten Sie persoenlich und begleiten den gesamten Prozess. Teilen Sie uns Ihre Ideen mit, wir melden uns zeitnah.</p>
+          <dl class="kontakt-quick-info">
+            <div><dt>Telefon</dt><dd>+41 44 123 45 67</dd></div>
+            <div><dt>E-Mail</dt><dd>tischmadech@icloud.com</dd></div>
+            <div><dt>Standorte</dt><dd>Marktgasse 4 • Oberdorfstrasse 17 • Ruemistrasse 4, Zuerich</dd></div>
+          </dl>
         </div>
+        <aside class="kontakt-hero-aside">
+          <h2>Direktkontakte</h2>
+          <ul class="kontakt-team">
+            <li><strong>Duel Bachmann</strong><span>Projektberatung</span><a href="tel:+41793813168">079 381 31 68</a></li>
+            <li><strong>Anastasia Wey</strong><span>Restaurierung</span><a href="tel:+41793583089">079 358 30 89</a></li>
+            <li><strong>Micky Pelzner</strong><span>Werkstatt</span><a href="tel:+41765956080">076 595 60 80</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
 
-        <div class="field">
-          <label for="email">E-Mail*</label>
-          <input id="email" name="Email" type="email" required />
-        </div>
+    <section class="kontakt-content" data-animate="up">
+      <div class="container kontakt-layout">
+        <form id="contact-form" class="kontakt-form" method="POST" action="https://formspree.io/f/xkgqbzdv">
+          <h2>Nachricht senden</h2>
+          <div class="kontakt-form-grid">
+            <label class="kontakt-field">Name*
+              <input id="name" name="Name" type="text" required />
+            </label>
+            <label class="kontakt-field">E-Mail*
+              <input id="email" name="Email" type="email" required />
+            </label>
+            <label class="kontakt-field">Telefon
+              <input id="phone" name="Telefon" type="tel" placeholder="+41 ..." />
+            </label>
+            <label class="kontakt-field">Projektart
+              <select id="topic" name="Thema">
+                <option value="anfrage">Allgemeine Anfrage</option>
+                <option value="tisch">Massanfertigung Tisch</option>
+                <option value="restaurierung">Restaurierung</option>
+                <option value="szenografie">Szenografie</option>
+              </select>
+            </label>
+          </div>
 
-        <div class="field">
-          <label for="phone">Telefon</label>
-          <input id="phone" name="Telefon" type="tel" placeholder="+41 ..." />
-        </div>
+          <label class="kontakt-field">Nachricht*
+            <textarea id="message" name="Nachricht" rows="6" required placeholder="Kurzbeschreibung Ihres Projekts, Masse, Holzart, Stil …"></textarea>
+          </label>
 
-        <div class="field">
-          <label for="topic">Thema</label>
-          <select id="topic" name="Thema">
-            <option value="anfrage">Allgemeine Anfrage</option>
-            <option value="tisch">Maßanfertigung Tisch</option>
-            <option value="restaurierung">Restaurierung</option>
-            <option value="szenografie">Szenografie</option>
-          </select>
-        </div>
+          <label class="kontakt-field">Budget (optional)
+            <input id="budget" name="Budget" type="text" placeholder="z. B. 7'000 – 30'000 CHF" />
+          </label>
 
-        <div class="field">
-          <label for="message">Nachricht*</label>
-          <textarea id="message" name="Nachricht" rows="6" required placeholder="Kurzbeschreibung deines Projekts, Maße, Holzart, Stil …"></textarea>
-        </div>
+          <div class="kontakt-consent">
+            <input id="consent" name="consent" type="checkbox" required />
+            <label for="consent">Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert und verarbeitet werden.</label>
+          </div>
 
-        <div class="field">
-          <label for="budget">Budget (optional)</label>
-          <input id="budget" name="Budget" type="text" placeholder="z. B. 7’000–30’000 CHF" />
-        </div>
+          <button class="btn" type="submit">Nachricht senden</button>
+        </form>
 
-        <div class="consent">
-          <input id="consent" name="consent" type="checkbox" required />
-          <label for="consent">Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert und verarbeitet werden.</label>
-        </div>
+        <aside class="kontakt-aside">
+          <h2>Werkstattzeiten</h2>
+          <ul class="kontakt-opening">
+            <li><strong>Showroom</strong><span>Di – Sa, 10 – 18 Uhr</span></li>
+            <li><strong>Werkstatt</strong><span>Mo – Fr, 08 – 17 Uhr</span></li>
+            <li><strong>Samstag</strong><span>Nach Vereinbarung</span></li>
+          </ul>
 
-        <button class="btn" type="submit">Nachricht senden</button>
-      </form>
+          <h2>Newsletter</h2>
+          <p>Inspirationen, neue Projekte und Termine direkt aus der Werkstatt. Maximal einmal im Monat.</p>
+          <form class="kontakt-newsletter" action="https://formspree.io/f/mbjvzvob" method="POST">
+            <label>
+              <span>E-Mail</span>
+              <input type="email" name="Email" required placeholder="Ihre E-Mail" />
+            </label>
+            <button type="submit">Anmelden</button>
+          </form>
 
-      <!-- Kontaktinfos -->
-      <aside class="contact-aside">
-        <h3>Direktkontakt</h3>
-        <p><strong>E-Mail:</strong><br/>tischmadech@icloud.com</p>
-        <p><strong>Dölf Bachmann</strong><br/>079 381 31 68</p>
-        <p><strong>Anastasia Wey</strong><br/>079 358 30 89</p>
-        <p><strong>Micky Pelzner</strong><br/>076 595 60 80</p>
-
-        <h3 style="margin-top:16px;">Adressen</h3>
-        <p>Marktgasse 4, 8001 Zürich<br/>Oberdorfstrasse 17, 8001 Zürich<br/>Rämistrasse 4, 8001 Zürich</p>
-
-        <div id="map"></div>
-      </aside>
-    </div>
+          <div class="kontakt-map-shell" data-animate="fade">
+            <iframe title="Standorte TischMadeCH" src="https://www.google.com/maps/d/u/0/embed?mid=1ZRCBCVutQZqgEkwazaQmTDcor-xozcI&ehbc=2E312F" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </aside>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <footer>
     <div class="container footer-content">
       <div class="brand">TischMadeCH</div>
-      <p>© 2025 TischMadeCH – Handgefertigte Tische, Restaurierung & Szenografie</p>
+      <p>&copy; 2025 TischMadeCH - Handgefertigte Tische, Restaurierung &amp; Szenografie</p>
     </div>
   </footer>
-  </footer>
 
-  <!-- JavaScript für Dankesmeldung -->
   <script>
-    const form = document.getElementById("contact-form");
+    const form = document.getElementById('contact-form');
 
-    form.addEventListener("submit", async function(event) {
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const data = new FormData(form);
       const response = await fetch(form.action, {
         method: form.method,
         body: data,
-        headers: { 'Accept': 'application/json' }
+        headers: { Accept: 'application/json' }
       });
 
       if (response.ok) {
-        form.innerHTML = "<p><strong>Danke! Wir melden uns bald bei dir.</strong></p>";
+        form.innerHTML = '<p><strong>Danke! Wir melden uns bald bei dir.</strong></p>';
       } else {
-        form.innerHTML = "<p><strong>Ups! Etwas ist schiefgelaufen, bitte probier es später erneut.</strong></p>";
+        form.innerHTML = '<p><strong>Ups! Etwas ist schiefgelaufen, bitte probier es spaeter erneut.</strong></p>';
       }
     });
   </script>
 </body>
 </html>
-

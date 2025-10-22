@@ -251,3 +251,51 @@ window.TischMadeCart = {
 
 
 
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toast = document.createElement('aside');
+  toast.className = 'cart-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  toast.innerHTML = [
+    '<div class="cart-toast-body">',
+      '<p class="cart-toast-title">Zum Warenkorb wechseln?</p>',
+      '<p class="cart-toast-copy"></p>',
+    '</div>',
+    '<div class="cart-toast-actions">',
+      '<button type="button" class="cart-toast-btn cart-toast-btn-secondary" data-toast-action="continue">Weiter einkaufen</button>',
+      '<button type="button" class="cart-toast-btn" data-toast-action="cart">Zum Warenkorb</button>',
+    '</div>'
+  ].join('');
+
+  document.body.appendChild(toast);
+
+  const copyNode = toast.querySelector('.cart-toast-copy');
+  const continueBtn = toast.querySelector('[data-toast-action="continue"]');
+  const cartBtn = toast.querySelector('[data-toast-action="cart"]');
+  let hideTimer;
+
+  const hideToast = () => {
+    toast.classList.remove('is-visible');
+  };
+
+  const showToast = (item) => {
+    const qty = Math.max(1, Number(item && item.qty) || 1);
+    const productTitle = item && item.title ? item.title : 'Produkt';
+    const message = qty + 'x ' + productTitle + ' wurde hinzugefuegt.';
+    copyNode.textContent = message;
+    toast.classList.add('is-visible');
+
+    window.clearTimeout(hideTimer);
+    hideTimer = window.setTimeout(hideToast, 6000);
+  };
+
+  continueBtn.addEventListener('click', hideToast);
+  cartBtn.addEventListener('click', () => {
+    window.location.href = 'cart.html';
+  });
+
+  window.addEventListener('cart:added', (event) => {
+    showToast(event.detail && event.detail.item);
+  });
+});

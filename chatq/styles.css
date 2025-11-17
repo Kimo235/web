@@ -111,7 +111,7 @@ h4 {
   display: inline-block;
   padding: 0.6rem 1.1rem;
   border: 2px solid var(--accent);
-  border-radius: 10px;
+  border-radius: 0;
   background: transparent;
   transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition);
 }
@@ -415,7 +415,7 @@ h4 {
   display: block;
   width: 70px;
   height: 3px;
-  border-radius: 999px;
+  border-radius: 0;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
   margin: 1.2rem auto 0;
 }
@@ -438,7 +438,7 @@ h4 {
 .service-card {
   background: var(--wood-cream);
   padding: 2.6rem 2.2rem;
-  border-radius: 18px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.12);
   box-shadow: var(--shadow-soft);
   flex: 1 1 260px;
@@ -452,7 +452,7 @@ h4 {
   content: '';
   width: 52px;
   height: 3px;
-  border-radius: 999px;
+  border-radius: 0;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
 
@@ -506,7 +506,7 @@ h4 {
 }
 
 .gallery-grid img {
-  border-radius: 20px;
+  border-radius: 0;
   box-shadow: 0 22px 45px rgba(27, 18, 12, 0.18);
   transition: transform 0.6s var(--transition), box-shadow 0.6s var(--transition);
 }
@@ -539,7 +539,7 @@ h4 {
 
 .contact-card {
   padding: 1.8rem 2.4rem;
-  border-radius: 16px;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(90, 74, 58, 0.12);
   box-shadow: 0 20px 45px rgba(27, 18, 12, 0.12);
@@ -607,7 +607,7 @@ h4 {
   align-items: center;
   gap: 1rem 1.5rem;
   padding: 1.4rem 1.8rem;
-  border-radius: 20px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.12);
   background: rgba(255, 255, 255, 0.82);
   box-shadow: var(--shadow-soft);
@@ -621,7 +621,7 @@ h4 {
 .product-search input {
   width: 100%;
   padding: 0.95rem 1.4rem 0.95rem 3rem;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.18);
   background: rgba(255, 255, 255, 0.85);
   font-size: 1rem;
@@ -650,7 +650,7 @@ h4 {
   width: 0.95rem;
   height: 0.95rem;
   border: 2px solid rgba(90, 74, 58, 0.45);
-  border-radius: 50%;
+  border-radius: 0;
   background: transparent;
 }
 
@@ -670,7 +670,7 @@ h4 {
 .chip {
   border: 1px solid rgba(90, 74, 58, 0.18);
   background: rgba(255, 255, 255, 0.65);
-  border-radius: 999px;
+  border-radius: 0;
   padding: 0.65rem 1.4rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -712,7 +712,7 @@ h4 {
 .product-card {
   display: flex;
   flex-direction: column;
-  border-radius: 22px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.12);
   background: rgba(255, 255, 255, 0.96);
   box-shadow: var(--shadow-soft);
@@ -799,7 +799,7 @@ h4 {
   top: 0.55em;
   width: 0.45rem;
   height: 0.45rem;
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--accent);
   transform: translateY(-50%);
 }
@@ -840,7 +840,7 @@ h4 {
 
 .werkstatt-hero-media {
   position: relative;
-  border-radius: 28px;
+  border-radius: 0;
   overflow: hidden;
   box-shadow: 0 32px 90px rgba(27, 18, 12, 0.22);
 }
@@ -881,7 +881,7 @@ h4 {
 .werkstatt-card {
   display: grid;
   gap: 1.2rem;
-  border-radius: 24px;
+  border-radius: 0;
   padding: clamp(2rem, 4vw, 2.6rem);
   background: rgba(255, 255, 255, 0.94);
   border: 1px solid rgba(90, 74, 58, 0.12);
@@ -914,7 +914,7 @@ h4 {
   justify-content: center;
   min-height: 2.2rem;
   padding: 0.35rem 1.1rem;
-  border-radius: 999px;
+  border-radius: 0;
   background: rgba(199, 136, 58, 0.18);
   color: var(--accent);
   font-size: 0.75rem;
@@ -977,7 +977,7 @@ h4 {
   top: 0.1rem;
   width: 2.2rem;
   height: 2.2rem;
-  border-radius: 50%;
+  border-radius: 0;
   background: linear-gradient(135deg, var(--accent), var(--accent-soft));
   color: var(--text-light);
   display: inline-flex;
@@ -990,7 +990,7 @@ h4 {
 .werkstatt-process-aside figure {
   display: grid;
   gap: 0.8rem;
-  border-radius: 24px;
+  border-radius: 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(90, 74, 58, 0.12);
@@ -1021,7 +1021,7 @@ h4 {
 
 .map-shell {
   position: relative;
-  border-radius: 24px;
+  border-radius: 0;
   overflow: hidden;
   border: 1px solid rgba(90, 74, 58, 0.12);
   box-shadow: 0 28px 65px rgba(27, 18, 12, 0.14);
@@ -1053,7 +1053,7 @@ h4 {
 
 .gallery-hero-media {
   position: relative;
-  border-radius: 32px;
+  border-radius: 0;
   overflow: hidden;
   min-height: clamp(320px, 45vw, 520px);
   box-shadow: 0 35px 90px rgba(27, 18, 12, 0.25);
@@ -1134,7 +1134,7 @@ h4 {
 .gallery-card {
   display: grid;
   gap: 1.2rem;
-  border-radius: 24px;
+  border-radius: 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.94);
   border: 1px solid rgba(90, 74, 58, 0.12);
@@ -1168,7 +1168,7 @@ h4 {
   left: 1.2rem;
   bottom: 1.2rem;
   padding: 0.35rem 0.9rem;
-  border-radius: 999px;
+  border-radius: 0;
   background: rgba(33, 24, 19, 0.7);
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.75rem;
@@ -1243,7 +1243,7 @@ footer {
 .products-empty {
   text-align: center;
   padding: 3rem;
-  border-radius: 20px;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.75);
   border: 1px dashed rgba(199, 136, 58, 0.4);
   color: var(--text-muted);
@@ -1291,7 +1291,7 @@ footer {
   grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr);
   align-items: start;
   background: rgba(255, 255, 255, 0.92);
-  border-radius: 28px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.1);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
@@ -1307,7 +1307,7 @@ footer {
 
 .product-hero-image {
   position: relative;
-  border-radius: 20px;
+  border-radius: 0;
   overflow: hidden;
   box-shadow: 0 25px 60px rgba(27, 18, 12, 0.18);
 }
@@ -1327,7 +1327,7 @@ footer {
 
 .product-thumb {
   border: 1px solid rgba(90, 74, 58, 0.2);
-  border-radius: 16px;
+  border-radius: 0;
   padding: 0.35rem;
   background: rgba(255, 255, 255, 0.85);
   cursor: pointer;
@@ -1338,7 +1338,7 @@ footer {
   width: 100%;
   height: 70px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 .product-thumb:hover,
@@ -1418,7 +1418,7 @@ footer {
   position: relative;
   align-items: center;
   gap: 0.5rem;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.18);
   background: rgba(255, 255, 255, 0.9);
   padding: 0.35rem 0.65rem;
@@ -1427,7 +1427,7 @@ footer {
 .product-qty-control button {
   width: 34px;
   height: 34px;
-  border-radius: 50%;
+  border-radius: 0;
   border: none;
   background: rgba(199, 136, 58, 0.15);
   color: var(--text-dark);
@@ -1487,7 +1487,7 @@ footer {
   top: 0.55em;
   width: 0.45rem;
   height: 0.45rem;
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--accent);
   transform: translateY(-50%);
 }
@@ -1501,7 +1501,7 @@ footer {
 .product-panel {
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(90, 74, 58, 0.1);
-  border-radius: 24px;
+  border-radius: 0;
   padding: clamp(1.6rem, 4vw, 2.2rem);
   box-shadow: 0 20px 45px rgba(27, 18, 12, 0.1);
 }
@@ -1540,7 +1540,7 @@ footer {
   top: 0.6em;
   width: 0.3rem;
   height: 0.3rem;
-  border-radius: 50%;
+  border-radius: 0;
   background: rgba(199, 136, 58, 0.6);
   transform: translateY(-50%);
 }
@@ -1607,7 +1607,7 @@ footer {
 
 .gallery-hero-media {
   position: relative;
-  border-radius: 32px;
+  border-radius: 0;
   overflow: hidden;
   min-height: clamp(320px, 45vw, 520px);
   box-shadow: 0 35px 90px rgba(27, 18, 12, 0.25);
@@ -1688,7 +1688,7 @@ footer {
 .gallery-card {
   display: grid;
   gap: 1.2rem;
-  border-radius: 24px;
+  border-radius: 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.94);
   border: 1px solid rgba(90, 74, 58, 0.12);
@@ -1722,7 +1722,7 @@ footer {
   left: 1.2rem;
   bottom: 1.2rem;
   padding: 0.35rem 0.9rem;
-  border-radius: 999px;
+  border-radius: 0;
   background: rgba(33, 24, 19, 0.7);
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.75rem;
@@ -1791,7 +1791,7 @@ footer p {
   align-items: center;
   justify-content: center;
   padding: 0.9rem 2.3rem;
-  border-radius: 999px;
+  border-radius: 0;
   border: none;
   background: linear-gradient(135deg, var(--accent), var(--accent-soft));
   color: var(--text-light);
@@ -1980,7 +1980,7 @@ footer p {
   gap: clamp(1.2rem, 3vw, 2rem);
   align-items: center;
   padding: clamp(1.2rem, 3vw, 1.8rem);
-  border-radius: 22px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.12);
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 16px 36px rgba(27, 18, 12, 0.12);
@@ -1996,7 +1996,7 @@ footer p {
   width: clamp(96px, 14vw, 128px);
   height: clamp(72px, 11vw, 96px);
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: 0;
   box-shadow: 0 12px 30px rgba(27, 18, 12, 0.14);
 }
 
@@ -2029,7 +2029,7 @@ footer p {
   position: relative;
   align-items: center;
   gap: 0.5rem;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.18);
   padding: 0.35rem 0.6rem;
   background: rgba(255, 255, 255, 0.85);
@@ -2038,7 +2038,7 @@ footer p {
 .qty-control button {
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: 0;
   border: none;
   background: rgba(199, 136, 58, 0.15);
   font-weight: 600;
@@ -2129,7 +2129,7 @@ footer p {
   height: 1.75em;
   margin-left: 0.45rem;
   padding: 0 0.55rem;
-  border-radius: 999px;
+  border-radius: 0;
   background: linear-gradient(135deg, var(--accent), var(--accent-soft));
   color: var(--text-light);
   font-size: 0.75rem;
@@ -2277,7 +2277,7 @@ footer p {
   align-items: center;
   padding: 1.6rem 1.8rem;
   margin-top: 1.8rem;
-  border-radius: 18px;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(90, 74, 58, 0.12);
   box-shadow: 0 24px 50px rgba(27, 18, 12, 0.08);
@@ -2329,7 +2329,7 @@ footer p {
   bottom: clamp(1rem, 4vw, 2.25rem);
   width: min(90vw, 320px);
   padding: 1.4rem 1.6rem;
-  border-radius: 20px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.12);
   background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 32px 75px rgba(27, 18, 12, 0.22);
@@ -2372,7 +2372,7 @@ footer p {
 .cart-toast-btn {
   flex: 1 1 auto;
   padding: 0.6rem 1.2rem;
-  border-radius: 999px;
+  border-radius: 0;
   border: none;
   background: linear-gradient(135deg, var(--accent), var(--accent-soft));
   color: var(--text-light);
@@ -2461,7 +2461,7 @@ footer p {
 
 .kontakt-hero-aside {
   padding: 2rem;
-  border-radius: 24px;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.94);
   border: 1px solid rgba(90, 74, 58, 0.12);
   box-shadow: 0 26px 60px rgba(27, 18, 12, 0.12);
@@ -2513,7 +2513,7 @@ footer p {
   display: grid;
   gap: 1.5rem;
   padding: clamp(2.2rem, 5vw, 2.8rem);
-  border-radius: 24px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.12);
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 28px 70px rgba(27, 18, 12, 0.1);
@@ -2543,7 +2543,7 @@ footer p {
 .kontakt-field textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.18);
   background: rgba(255, 255, 255, 0.9);
   font-size: 1rem;
@@ -2551,7 +2551,7 @@ footer p {
 }
 
 .kontakt-field textarea {
-  border-radius: 16px;
+  border-radius: 0;
 }
 
 .kontakt-field input:focus,
@@ -2578,7 +2578,7 @@ footer p {
   display: grid;
   gap: 1.8rem;
   padding: clamp(2.2rem, 5vw, 2.8rem);
-  border-radius: 24px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.12);
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 24px 60px rgba(27, 18, 12, 0.1);
@@ -2621,14 +2621,14 @@ footer p {
 .kontakt-newsletter input {
   width: 100%;
   padding: 0.75rem 1rem;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid rgba(90, 74, 58, 0.18);
   background: rgba(255, 255, 255, 0.9);
 }
 
 .kontakt-newsletter button {
   border: none;
-  border-radius: 999px;
+  border-radius: 0;
   padding: 0.65rem 1.4rem;
   background: linear-gradient(135deg, var(--accent), var(--accent-soft));
   color: var(--text-light);
@@ -2647,7 +2647,7 @@ footer p {
 }
 
 .kontakt-map-shell {
-  border-radius: 18px;
+  border-radius: 0;
   overflow: hidden;
   border: 1px solid rgba(90, 74, 58, 0.12);
   box-shadow: 0 18px 40px rgba(27, 18, 12, 0.1);

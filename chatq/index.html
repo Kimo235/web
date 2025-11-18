@@ -13,11 +13,10 @@
       <div ><a href="index.html"> <h1>Bachmann</a></h3></div>
       <nav>
         <ul class="nav-links">
-          <li><a href="products.html">Kollektionen</a></li>
-          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="products.html">Der Tisch</a></li>
+          <li><a href="gallery.html">Projekte</a></li>
           <li><a href="werkstatt.html">Werkstatt</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
-          <li><a href="cart.html">Warenkorb <span class="cart-count" data-cart-count>0</span></a></li>
         </ul>
       </nav>
       <button class="burger" id="burger" aria-label="Menue oeffnen">
@@ -25,73 +24,46 @@
       </button>
     </div>
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-      <a href="products.html">Kollektionen</a>
-      <a href="gallery.html">Galerie</a>
+      <a href="products.html">Der Tisch</a>
+      <a href="gallery.html">Projekte</a>
       <a href="werkstatt.html">Werkstatt</a>
       <a href="kontakt.html">Kontakt</a>
-      <a href="cart.html">Warenkorb</a>
     </div>
   </header>
 
-  <section class="hero" data-animate="hero" data-hero>
-    <div class="hero-grid" aria-hidden="true"></div>
-    <div class="hero-transition" data-hero-transition aria-hidden="true"></div>
-    <div class="hero-slider" data-hero-slider>
-      <article class="hero-slide is-active" id="hero-slide-0" data-hero-slide role="tabpanel" aria-labelledby="hero-tab-0" style="--hero-image: url('images/dummy-hero-1.jpg');">
-        <img src="images/dummy-hero-1.jpg" alt="Hero Slide 1" class="hero-fallback-image">
-        <div class="hero-slide-inner container">
-          <p class="hero-kicker">Massgefertigte Tische</p>
-          <h1>Unikate aus Massivholz</h1>
-          <p>Schweizer Handwerk trifft auf charakterstarke Materialien. Wir gestalten Tische, die Generationen verbinden und den Mittelpunkt Ihres Zuhauses bilden.</p>
-          <a class="btn hero-cta" href="products.html">Kollektionen ansehen</a>
+  <section class="hero hero-lelabo" data-hero-labo>
+    <div class="hero-lelabo-visual" data-hero-visual>
+      <a href="products.html" class="hero-main-link" data-hero-link>
+        <div class="hero-main-image">
+          <img src="images/dummy-hero-1.jpg" alt="Der Tisch" data-hero-main />
+          <div class="hero-main-overlay" aria-hidden="true">
+            <span data-hero-overlay>Der Tisch</span>
+          </div>
         </div>
-      </article>
-      <article class="hero-slide" id="hero-slide-1" data-hero-slide role="tabpanel" aria-labelledby="hero-tab-1" style="--hero-image: url('images/dummy-hero-2.jpg');">
-        <img src="images/dummy-hero-2.jpg" alt="Hero Slide 2" class="hero-fallback-image">
-        <div class="hero-slide-inner container">
-          <p class="hero-kicker">Restaurierung</p>
-          <h1>Alte Stücke, neuer Glanz</h1>
-          <p>Wir bewahren die Geschichte Ihres Lieblingsmoebels und verleihen ihm zugleich eine zeitgemässe Handschrift. Detailgetreu, langlebig und liebevoll.</p>
-          <a class="btn hero-cta" href="gallery.html">Vorher &amp; Nachher entdecken</a>
-        </div>
-      </article>
-      <article class="hero-slide" id="hero-slide-2" data-hero-slide role="tabpanel" aria-labelledby="hero-tab-2" style="--hero-image: url('images/dummy-hero-3.jpg');">
-        <img src="images/dummy-hero-3.jpg" alt="Hero Slide 3" class="hero-fallback-image">
-        <div class="hero-slide-inner container">
-          <p class="hero-kicker">Szenografie</p>
-          <h1>Räume, die Geschichten erzählen</h1>
-          <p>Ob Ausstellung oder Bühnenbild: Wir komponieren Holz, Licht und Material zu atmosphaerischen Erlebniswelten, die nachhaltig im Gedaechtnis bleiben.</p>
-          <a class="btn hero-cta" href="werkstatt.html">Werkstattblick werfen</a>
-        </div>
-      </article>
-      <article class="hero-slide" id="hero-slide-3" data-hero-slide role="tabpanel" aria-labelledby="hero-tab-3" style="--hero-image: url('images/dummy-hero-4.jpg');">
-        <img src="images/dummy-hero-4.jpg" alt="Hero Slide 4" class="hero-fallback-image">
-        <div class="hero-slide-inner container">
-          <p class="hero-kicker">Werkstatt</p>
-          <h1>Material mit Charakter</h1>
-          <p>Von der Rohbohle bis zum letzten Schliff begleiten wir jedes Projekt persoenlich. Lernen Sie unsere Prozesse kennen und erleben Sie Holz in reinster Form.</p>
-          <a class="btn hero-cta" href="kontakt.html">Projekt anfragen</a>
-        </div>
-      </article>
+      </a>
+      <div class="hero-collections hero-collections-inline" role="tablist" aria-label="Bereiche entdecken">
+        <button type="button" class="hero-collection is-active" role="tab" aria-selected="true"
+                data-hero-item data-image="images/dummy-hero-1.jpg" data-link="products.html" data-overlay="Der Tisch">
+          <span class="hero-collection-label">Der Tisch</span>
+          <span class="hero-collection-sub">Massivholz nach Maß – Kollektion entdecken</span>
+        </button>
+        <button type="button" class="hero-collection" role="tab" aria-selected="false"
+                data-hero-item data-image="images/dummy-hero-2.jpg" data-link="gallery.html" data-overlay="Projekte">
+          <span class="hero-collection-label">Projekte</span>
+          <span class="hero-collection-sub">Vorher/Nachher und Referenzen</span>
+        </button>
+        <button type="button" class="hero-collection" role="tab" aria-selected="false"
+                data-hero-item data-image="images/dummy-hero-3.jpg" data-link="werkstatt.html" data-overlay="Werkstatt">
+          <span class="hero-collection-label">Werkstatt</span>
+          <span class="hero-collection-sub">Prozesse, Materialien, Einblicke</span>
+        </button>
+        <button type="button" class="hero-collection" role="tab" aria-selected="false"
+                data-hero-item data-image="images/dummy-hero-4.jpg" data-link="kontakt.html" data-overlay="Kontakt">
+          <span class="hero-collection-label">Kontakt</span>
+          <span class="hero-collection-sub">Termin vereinbaren oder Projekt starten</span>
+        </button>
+      </div>
     </div>
-    <nav class="hero-menu" data-hero-menu role="tablist" aria-label="Highlights">
-      <button type="button" class="hero-menu-item is-active" id="hero-tab-0" data-hero-nav="0" role="tab" aria-controls="hero-slide-0" aria-selected="true">
-        <span class="hero-menu-title">Massivholz</span>
-        <span class="hero-menu-copy">Massarbeit für Wohnräume mit Charakter.</span>
-      </button>
-      <button type="button" class="hero-menu-item" id="hero-tab-1" data-hero-nav="1" role="tab" aria-controls="hero-slide-1" aria-selected="false" tabindex="-1">
-        <span class="hero-menu-title">Restaurierung</span>
-        <span class="hero-menu-copy">Behutsam restauriert, für morgen bewahrt.</span>
-      </button>
-      <button type="button" class="hero-menu-item" id="hero-tab-2" data-hero-nav="2" role="tab" aria-controls="hero-slide-2" aria-selected="false" tabindex="-1">
-        <span class="hero-menu-title">Szenografie</span>
-        <span class="hero-menu-copy">Inszenierungen, die Atmosphäre schaffen.</span>
-      </button>
-      <button type="button" class="hero-menu-item" id="hero-tab-3" data-hero-nav="3" role="tab" aria-controls="hero-slide-3" aria-selected="false" tabindex="-1">
-        <span class="hero-menu-title">Werkstatt</span>
-        <span class="hero-menu-copy">Holzkompetenz aus unserer Manufaktur.</span>
-      </button>
-    </nav> 
   </section>
 
   <section class="container intro" data-animate="up">

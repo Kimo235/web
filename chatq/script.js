@@ -58,99 +58,91 @@ staggerRoots.forEach(node => {
   }
 });
 
-const heroSection = document.querySelector('[data-hero]');
+const heroLabo = document.querySelector('[data-hero-labo]');
 
-if (heroSection) {
-  const heroSlides = Array.from(heroSection.querySelectorAll('[data-hero-slide]'));
-  const heroNavItems = Array.from(heroSection.querySelectorAll('[data-hero-nav]'));
-  const transitionLayer = heroSection.querySelector('[data-hero-transition]');
-  let heroCurrent = 0;
+if (heroLabo) {
+  const heroItems = Array.from(heroLabo.querySelectorAll('[data-hero-item]'));
+  const mainImage = heroLabo.querySelector('[data-hero-main]');
+  const heroLink = heroLabo.querySelector('[data-hero-link]');
+  const overlayText = heroLabo.querySelector('[data-hero-overlay]');
+  let heroCurrent = Math.max(0, heroItems.findIndex(item => item.classList.contains('is-active')));
   let heroTimer = null;
-  const heroDelay = 6500;
+  const heroDelay = 7000;
 
-  const setHeroSlide = index => {
-    if (!heroSlides.length) {
-      return;
-    }
+  const setHeroState = (index, userTriggered = false) => {
+    if (!heroItems.length) return;
+    const targetIndex = (index + heroItems.length) % heroItems.length;
+    const target = heroItems[targetIndex];
 
-    const previous = heroCurrent;
-    heroCurrent = (index + heroSlides.length) % heroSlides.length;
-
-    if (heroCurrent === previous && heroSection.dataset.heroReady === 'true') {
-      return;
-    }
-
-    heroSlides.forEach((slide, slideIndex) => {
-      const isActive = slideIndex === heroCurrent;
-      slide.classList.toggle('is-active', isActive);
-      slide.setAttribute('aria-hidden', (!isActive).toString());
-      slide.setAttribute('tabindex', isActive ? '0' : '-1');
-    });
-
-    heroNavItems.forEach((item, itemIndex) => {
-      const isActive = itemIndex === heroCurrent;
+    heroItems.forEach((item, i) => {
+      const isActive = i === targetIndex;
       item.classList.toggle('is-active', isActive);
       item.setAttribute('aria-selected', isActive.toString());
       item.setAttribute('tabindex', isActive ? '0' : '-1');
     });
 
-    heroSection.setAttribute('data-active-index', `${heroCurrent}`);
-    heroSection.dataset.heroReady = 'true';
+    if (mainImage && target.dataset.image) {
+      mainImage.src = target.dataset.image;
+      mainImage.alt = target.dataset.overlay || 'Hero Bild';
+    }
 
-    if (transitionLayer) {
-      transitionLayer.classList.remove('is-animating');
-      void transitionLayer.offsetWidth;
-      transitionLayer.classList.add('is-animating');
+    if (heroLink && target.dataset.link) {
+      heroLink.href = target.dataset.link;
+    }
+
+    if (overlayText) {
+      overlayText.textContent = target.dataset.overlay || '';
+    }
+
+    heroCurrent = targetIndex;
+
+    if (userTriggered) {
+      restartAutoplay();
     }
   };
 
-  const stopHeroAutoplay = () => {
+  const stopAutoplay = () => {
     if (heroTimer) {
       clearTimeout(heroTimer);
       heroTimer = null;
     }
   };
 
-  const startHeroAutoplay = () => {
-    if (heroSlides.length < 2) {
-      return;
-    }
-
-    stopHeroAutoplay();
+  const startAutoplay = () => {
+    if (heroItems.length < 2) return;
+    stopAutoplay();
     heroTimer = window.setTimeout(() => {
-      setHeroSlide(heroCurrent + 1);
-      startHeroAutoplay();
+      setHeroState(heroCurrent + 1);
+      startAutoplay();
     }, heroDelay);
   };
 
-  heroNavItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
-      stopHeroAutoplay();
-      setHeroSlide(index);
-      startHeroAutoplay();
-    });
+  const restartAutoplay = () => {
+    stopAutoplay();
+    startAutoplay();
+  };
 
-    item.addEventListener('mouseenter', stopHeroAutoplay);
-    item.addEventListener('mouseleave', startHeroAutoplay);
-    item.addEventListener('focus', stopHeroAutoplay);
-    item.addEventListener('blur', startHeroAutoplay);
+  heroItems.forEach((item, index) => {
+    item.addEventListener('mouseenter', () => setHeroState(index, true));
+    item.addEventListener('click', () => setHeroState(index, true));
+    item.addEventListener('focus', () => setHeroState(index, true));
   });
 
-  heroSection.addEventListener('mouseenter', stopHeroAutoplay);
-  heroSection.addEventListener('mouseleave', startHeroAutoplay);
-  heroSection.addEventListener('touchstart', stopHeroAutoplay, { passive: true });
-  heroSection.addEventListener('touchend', startHeroAutoplay, { passive: true });
+  heroLabo.addEventListener('mouseenter', stopAutoplay);
+  heroLabo.addEventListener('mouseleave', startAutoplay);
+  heroLabo.addEventListener('touchstart', stopAutoplay, { passive: true });
+  heroLabo.addEventListener('touchend', startAutoplay, { passive: true });
 
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-      stopHeroAutoplay();
+      stopAutoplay();
     } else {
-      startHeroAutoplay();
+      startAutoplay();
     }
   });
 
-  setHeroSlide(0);
-  startHeroAutoplay();
+  setHeroState(heroCurrent || 0);
+  startAutoplay();
 }
 
 const CART_STORAGE_KEY = 'tischmadech-cart';

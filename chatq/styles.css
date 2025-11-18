@@ -211,6 +211,139 @@ h4 {
   overflow: hidden;
 }
 
+/* === Le-Labo-inspirierter Hero auf der Startseite === */
+.hero.hero-lelabo {
+  min-height: 100vh;
+  color: var(--text-light);
+  background: #575d57;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+.hero-lelabo-visual {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 720px;
+  max-height: 980px;
+}
+
+.hero-main-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-main-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1s ease, opacity 0.5s ease;
+}
+
+.hero-main-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  padding: clamp(1.8rem, 4vw, 2.6rem);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.hero-main-overlay span {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 13vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.52);
+  text-shadow: 0 28px 60px rgba(0, 0, 0, 0.4);
+}
+
+.hero-main-link:hover img,
+.hero-main-link:focus-visible img {
+  transform: scale(1.02);
+  outline: none;
+}
+
+.hero-collections-inline {
+  position: absolute;
+  left: clamp(1.5rem, 4vw, 2.8rem);
+  right: clamp(1.5rem, 4vw, 2.8rem);
+  bottom: clamp(2.2rem, 5vw, 3.6rem);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(0.4rem, 1.6vw, 0.9rem);
+  align-items: center;
+}
+
+.hero-collections-inline .hero-collection {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--font-heading);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.88rem;
+  padding: 0.85rem 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.25s ease, transform 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.08rem;
+}
+
+.hero-collections-inline .hero-collection.is-active {
+  color: var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+.hero-collections-inline .hero-collection:hover,
+.hero-collections-inline .hero-collection:focus-visible {
+  color: #fff;
+  outline: none;
+}
+
+.hero-collections-inline .hero-collection .hero-collection-label {
+  font-size: 0.92rem;
+  letter-spacing: 0.18em;
+}
+
+.hero-collections-inline .hero-collection .hero-collection-sub {
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.72);
+  text-transform: none;
+}
+
+@media (max-width: 768px) {
+  .hero-lelabo-visual {
+    min-height: 76vh;
+    height: 76vh;
+  }
+
+  .hero-main-overlay span {
+    font-size: clamp(3.2rem, 14vw, 5.6rem);
+  }
+
+  .hero-collections-inline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .hero-slider {
   position: relative;
   flex: 1;

@@ -10,12 +10,14 @@
 <body>
   <header class="header" data-animate="fade">
     <div class="container topbar">
-      <div ><a href="index.html"> <h1>Bachmann</a></h3></div>
+      <div class="brand">
+        <a href="index.html"><h1>Bachmann</h1></a>
+      </div>
       <nav>
         <ul class="nav-links">
           <li><a href="products.html">Der Tisch</a></li>
           <li><a href="gallery.html">Projekte</a></li>
-          <li><a href="werkstatt.html">Werkstatt</a></li>
+          <li><a href="werkstatt.html">Atelier</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
       </nav>
@@ -26,7 +28,7 @@
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <a href="products.html">Der Tisch</a>
       <a href="gallery.html">Projekte</a>
-      <a href="werkstatt.html">Werkstatt</a>
+      <a href="werkstatt.html">Atelier</a>
       <a href="kontakt.html">Kontakt</a>
     </div>
   </header>
@@ -34,92 +36,56 @@
   <section class="hero hero-lelabo" data-hero-labo>
     <div class="hero-lelabo-visual" data-hero-visual>
       <a href="products.html" class="hero-main-link" data-hero-link>
-        <div class="hero-main-image">
-          <img src="images/dummy-hero-1.jpg" alt="Der Tisch" data-hero-main />
-          <div class="hero-main-overlay" aria-hidden="true">
+        <div class="hero-main-image" data-hero-main-image>
+          <img src="images/dertisch_main.jpeg" alt="Der Tisch" data-hero-main />
+          <div class="hero-main-overlay">
             <span data-hero-overlay>Der Tisch</span>
           </div>
         </div>
       </a>
       <div class="hero-collections hero-collections-inline" role="tablist" aria-label="Bereiche entdecken">
-        <button type="button" class="hero-collection is-active" role="tab" aria-selected="true"
-                data-hero-item data-image="images/dummy-hero-1.jpg" data-link="products.html" data-overlay="Der Tisch">
+        <button
+          type="button"
+          class="hero-collection is-active"
+          role="tab"
+          aria-selected="true"
+          data-hero-item
+          data-image="images/dertisch_main.jpeg"
+          data-link="products.html"
+          data-overlay="Der Tisch"
+        >
           <span class="hero-collection-label">Der Tisch</span>
           <span class="hero-collection-sub">Massivholz nach Maß – Kollektion entdecken</span>
         </button>
-        <button type="button" class="hero-collection" role="tab" aria-selected="false"
-                data-hero-item data-image="images/dummy-hero-2.jpg" data-link="gallery.html" data-overlay="Projekte">
+
+        <button
+          type="button"
+          class="hero-collection"
+          role="tab"
+          aria-selected="false"
+          data-hero-item
+          data-image="images/projekt_main.jpeg"
+          data-link="gallery.html"
+          data-overlay="Projekte"
+        >
           <span class="hero-collection-label">Projekte</span>
           <span class="hero-collection-sub">Vorher/Nachher und Referenzen</span>
         </button>
-        <button type="button" class="hero-collection" role="tab" aria-selected="false"
-                data-hero-item data-image="images/dummy-hero-3.jpg" data-link="werkstatt.html" data-overlay="Werkstatt">
-          <span class="hero-collection-label">Werkstatt</span>
+
+        <button
+          type="button"
+          class="hero-collection"
+          role="tab"
+          aria-selected="false"
+          data-hero-item
+          data-image="images/marktgasse_rechts_main.jpeg"
+          data-link="werkstatt.html"
+          data-overlay="Atelier"
+        >
+          <span class="hero-collection-label">Atelier</span>
           <span class="hero-collection-sub">Prozesse, Materialien, Einblicke</span>
         </button>
-        <button type="button" class="hero-collection" role="tab" aria-selected="false"
-                data-hero-item data-image="images/dummy-hero-4.jpg" data-link="kontakt.html" data-overlay="Kontakt">
-          <span class="hero-collection-label">Kontakt</span>
-          <span class="hero-collection-sub">Termin vereinbaren oder Projekt starten</span>
-        </button>
       </div>
-    </div>
-  </section>
-
-  <section class="container intro" data-animate="up">
-    <p style="font-size: 29px;">Über TischMadeCH</p>
-    <p>In unserer Werkstatt in Zürich entstehen einzigartige Möbelstücke. Jedes Projekt erzaehlt eine Geschichte von Handwerk, Material und Leidenschaft. Von der <strong>Restaurierung</strong> ueber <strong>massgefertigte Tische</strong> bis hin zu <strong>Szenografie</strong> - wir schaffen Unikate, die ein Leben lang begleiten.</p>
-  </section>
-
-  <section class="services container" data-animate="stagger">
-    <div class="service-card" data-animate-item>
-      <h3>Massgefertigte Tische</h3>
-      <p>Individuelle Designs abgestimmt auf Ihren Wohnraum - modern, rustikal oder klassisch.</p>
-    </div>
-    <div class="service-card" data-animate-item>
-      <h3>Restaurierung</h3>
-      <p>Wir geben alten Moebeln neues Leben und erhalten ihre Geschichte für kommende Generationen.</p>
-    </div>
-    <div class="service-card" data-animate-item>
-      <h3>Szenografie</h3>
-      <p>Einrichtung, Bühnenbau und kreative Raumgestaltung mit einzigartigen Holzarbeiten.</p>
-    </div>
-  </section>
-
-  <section class="gallery-preview" data-animate="fade">
-    <div class="container">
-      <h2>Unsere Arbeiten</h2>
-      <div class="gallery-grid">
-        <img src="images/dummy-hero-1.jpg" alt="Massivholztisch" data-animate="in" />
-        <img src="images/dummy-hero-2.jpg" alt="Restaurierter Tisch" data-animate="in" />
-        <img src="images/dummy-hero-3.jpg" alt="Moderner Esstisch" data-animate="in" />
-      </div>
-      <a href="gallery.html" class="btn btn-light" style="margin-top: 20px; display: inline-block;">Zur Galerie</a>
-    </div>
-  </section>
-
-  <section class="contact container" data-animate="up">
-    <h2>Ihr direkter Draht zu uns</h2>
-    <div class="contact-grid">
-      <div class="contact-card" data-animate="up">
-        <p>Dölf Bachmann</p>
-        <a href="tel:+41793813168">079 381 31 68</a>
-      </div>
-      <div class="contact-card" data-animate="up">
-        <p>Anastasia Wey</p>
-        <a href="tel:+41793583089">079 358 30 89</a>
-      </div>
-      <div class="contact-card" data-animate="up">
-        <p>Micky Pelzner</p>
-        <a href="tel:+41765956080">076 595 60 80</a>
-      </div>
-      <div class="contact-card" data-animate="up">
-        <p>Email</p>
-        <a href="mailto:Tischmadech@icloud.com">Tischmadech@icloud.com</a>
-      </div>
-    </div>
-    <div class="contact-cta" data-animate="fade">
-      <a class="btn" href="kontakt.html">Kontaktformular</a>
     </div>
   </section>
 

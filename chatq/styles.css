@@ -215,43 +215,44 @@ h4 {
 
 /* === Le-Labo-inspirierter Hero auf der Startseite (full-bleed Bild + Overlay-Titel + Tabs) === */
 .hero.hero-lelabo {
-  min-height: 100vh;
+  min-height: auto;
   color: var(--text-light);
-  background: #7a7a7b;
+  background: none;
   position: relative;
-  overflow: hidden;
-  display: flex;
+  overflow: visible;
+  display: block;
+  padding: 0;
+  margin: 0;
 }
 
 .hero-lelabo-visual {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 720px;
-  max-height: 980px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 3vw, 2rem);
 }
 
 .hero-main-link {
   display: block;
-  inset: 0;
   width: 100%;
-  height: 100%;
+  color: inherit;
+  text-decoration: none;
 }
 
 .hero-main-image {
   position: relative;
   width: 100%;
-  height: 100%;
   overflow: hidden;
   isolation: isolate;
+  transition: transform 0.6s var(--transition);
 }
 
 .hero-main-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
-  transition: transform 1s ease, opacity 0.5s ease;
+  transition: transform 0.8s ease;
 }
 
 .hero-main-overlay {
@@ -259,37 +260,44 @@ h4 {
   inset: 0;
   display: flex;
   align-items: flex-start;
-  padding: clamp(1.8rem, 4vw, 2.6rem);
+  padding: clamp(0.6rem, 2vw, 1.2rem);
   pointer-events: none;
-  mix-blend-mode: screen;
 }
 
 .hero-main-overlay span {
   font-family: var(--font-heading);
-  font-size: clamp(4rem, 13vw, 8rem);
+  font-size: clamp(3rem, 10vw, 5.6rem);
   line-height: 0.9;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.52);
-  text-shadow: 0 28px 60px rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.56);
+  text-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  margin-top: clamp(0.2rem, 1vw, 0.8rem);
+  display: inline-block;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.35s var(--transition);
 }
 
-.hero-main-link:hover img,
-.hero-main-link:focus-visible img {
-  transform: scale(1.02);
-  outline: none;
+.hero-main-overlay span.is-overlay-hover {
+  transform: scale(1.04);
+}
+
+.hero-main-image.is-overlay-hover img {
+  transform: scale(1.04);
 }
 
 /* Tab-Leiste am unteren Bildrand */
 .hero-collections-inline {
-  position: absolute;
-  left: clamp(20rem, 8vw, 24rem);
-  right: clamp(20rem, 8vw, 24rem);
-  bottom: clamp(2.2rem, 5vw, 3.6rem);
+  position: relative;
+  width: min(92%, 1100px);
+  /* negative top margin to pull the tabs onto the bottom of the hero image */
+  margin: clamp(-18rem, -20vw, -14rem) auto 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: clamp(0.4rem, 1.6vw, 0.9rem);
   align-items: center;
+  z-index: 2;
 }
 
 .hero-collections-inline .hero-collection {
@@ -335,8 +343,7 @@ h4 {
 
 @media (max-width: 768px) {
   .hero-lelabo-visual {
-    min-height: 76vh;
-    height: 76vh;
+    gap: clamp(1rem, 6vw, 1.4rem);
   }
 
   .hero-main-overlay span {
@@ -345,6 +352,7 @@ h4 {
 
   .hero-collections-inline {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 94%;
   }
 }
 
@@ -1734,6 +1742,7 @@ footer {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   margin-bottom: 0.6rem;
+  margin-top: 7rem
 }
 
 footer p {

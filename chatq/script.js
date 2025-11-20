@@ -62,9 +62,11 @@ const heroLabo = document.querySelector('[data-hero-labo]');
 
 if (heroLabo) {
   const heroItems = Array.from(heroLabo.querySelectorAll('[data-hero-item]'));
+  const heroIndicators = Array.from(heroLabo.querySelectorAll('[data-hero-indicator]'));
   const mainImage = heroLabo.querySelector('[data-hero-main]');
   const heroLink = heroLabo.querySelector('[data-hero-link]');
   const overlayText = heroLabo.querySelector('[data-hero-overlay]');
+  const heroMainImage = heroLabo.querySelector('[data-hero-main-image]');
   let heroCurrent = Math.max(0, heroItems.findIndex(item => item.classList.contains('is-active')));
   let heroTimer = null;
   const heroDelay = 7000;
@@ -94,6 +96,12 @@ if (heroLabo) {
       overlayText.textContent = target.dataset.overlay || '';
     }
 
+    heroIndicators.forEach((indicator, indicatorIndex) => {
+      const isDotActive = indicatorIndex === targetIndex;
+      indicator.classList.toggle('is-active', isDotActive);
+      indicator.setAttribute('aria-current', isDotActive ? 'true' : 'false');
+    });
+
     heroCurrent = targetIndex;
 
     if (userTriggered) {
@@ -122,11 +130,16 @@ if (heroLabo) {
     startAutoplay();
   };
 
-  heroItems.forEach((item, index) => {
-    item.addEventListener('mouseenter', () => setHeroState(index, true));
-    item.addEventListener('click', () => setHeroState(index, true));
-    item.addEventListener('focus', () => setHeroState(index, true));
-  });
+  const attachNavHandlers = (nodeList) => {
+    nodeList.forEach((item, index) => {
+      item.addEventListener('mouseenter', () => setHeroState(index, true));
+      item.addEventListener('click', () => setHeroState(index, true));
+      item.addEventListener('focus', () => setHeroState(index, true));
+    });
+  };
+
+  attachNavHandlers(heroItems);
+  attachNavHandlers(heroIndicators);
 
   heroLabo.addEventListener('mouseenter', stopAutoplay);
   heroLabo.addEventListener('mouseleave', startAutoplay);
@@ -143,6 +156,21 @@ if (heroLabo) {
 
   setHeroState(heroCurrent || 0);
   startAutoplay();
+
+  if (overlayText && heroMainImage) {
+    const setOverlayHover = state => {
+      heroMainImage.classList.toggle('is-overlay-hover', state);
+      overlayText.classList.toggle('is-overlay-hover', state);
+    };
+
+    ['mouseenter', 'focus'].forEach(evt => {
+      overlayText.addEventListener(evt, () => setOverlayHover(true));
+    });
+
+    ['mouseleave', 'blur'].forEach(evt => {
+      overlayText.addEventListener(evt, () => setOverlayHover(false));
+    });
+  }
 }
 
 const CART_STORAGE_KEY = 'tischmadech-cart';

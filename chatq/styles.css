@@ -19,6 +19,12 @@
   --transition: cubic-bezier(0.33, 1, 0.68, 1);
 }
 
+/* Replace default type tokens with webfonts loaded from index.html */
+:root {
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
 /* Base resets and typography */
 * {
   margin: 0;

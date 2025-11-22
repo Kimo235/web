@@ -2,21 +2,91 @@
 const mobileMenu = document.getElementById('mobile-menu');
 
 if (burger && mobileMenu) {
-  burger.addEventListener('click', () => {
-    const isOpen = mobileMenu.style.display === 'flex';
-    mobileMenu.style.display = isOpen ? 'none' : 'flex';
-    mobileMenu.setAttribute('aria-hidden', isOpen);
-    burger.classList.toggle('is-active', !isOpen);
-  });
+  const toggleMenu = (open) => {
+    const isOpen = typeof open === 'boolean' ? open : !mobileMenu.classList.contains('open');
+    mobileMenu.classList.toggle('open', isOpen);
+    mobileMenu.setAttribute('aria-hidden', (!isOpen).toString());
+    burger.classList.toggle('is-active', isOpen);
+    burger.setAttribute('aria-expanded', isOpen.toString());
+  };
+
+  // Ensure initial state
+  toggleMenu(false);
+
+  burger.addEventListener('click', () => toggleMenu());
 
   document.querySelectorAll('#mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.style.display = 'none';
-      mobileMenu.setAttribute('aria-hidden', true);
-      burger.classList.remove('is-active');
-    });
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+
+  // Close mobile menu with Escape for accessibility
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      toggleMenu(false);
+      burger.focus();
+    }
   });
 }
+
+/* Contact modal: open/close + simple focus return */
+const contactOpen = document.getElementById('contact-open');
+const modalBackdrop = document.createElement('div');
+modalBackdrop.className = 'modal-backdrop';
+modalBackdrop.innerHTML = [
+  '<div class="modal" role="dialog" aria-modal="true" aria-labelledby="contact-title">',
+    '<h3 id="contact-title">Anfrage senden</h3>',
+    '<div class="form-row"><label class="sr-only">Name<input type="text" id="contact-name" placeholder="Ihr Name"></label></div>',
+    '<div class="form-row"><label class="sr-only">Email<input type="email" id="contact-email" placeholder="Email"></label></div>',
+    '<div class="form-row"><label class="sr-only">Nachricht<textarea id="contact-message" rows="4" placeholder="Ihre Nachricht"></textarea></label></div>',
+    '<div class="modal-actions">',
+      '<button type="button" class="btn btn-ghost" data-modal-close>Abbrechen</button>',
+      '<button type="button" class="btn btn-primary" id="contact-send">Senden</button>',
+    '</div>',
+  '</div>'
+].join('');
+
+document.body.appendChild(modalBackdrop);
+
+const openModal = () => {
+  modalBackdrop.classList.add('open');
+  modalBackdrop.querySelector('.modal').focus();
+  modalBackdrop.setAttribute('aria-hidden', 'false');
+};
+
+const closeModal = () => {
+  modalBackdrop.classList.remove('open');
+  modalBackdrop.setAttribute('aria-hidden', 'true');
+  if (contactOpen) contactOpen.focus();
+};
+
+modalBackdrop.addEventListener('click', (e) => {
+  if (e.target === modalBackdrop || e.target.matches('[data-modal-close]')) closeModal();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modalBackdrop.classList.contains('open')) closeModal();
+});
+
+if (contactOpen) {
+  contactOpen.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+}
+
+// Basic send handler (no backend) — show confirmation toast
+const contactSend = () => {
+  closeModal();
+  const toast = document.createElement('div');
+  toast.className = 'contact-sent-toast';
+  toast.textContent = 'Danke — wir melden uns bald bei Ihnen.';
+  Object.assign(toast.style, { position: 'fixed', bottom: '20px', left: '50%', transform: 'translateX(-50%)', background: 'var(--wood-dark)', color: '#fff', padding: '0.6rem 1rem', borderRadius: '6px', zIndex: 2100 });
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 4200);
+};
+
+document.body.addEventListener('click', (e) => {
+  if (e.target && e.target.id === 'contact-send') {
+    contactSend();
+  }
+});
 
 const animatedNodes = document.querySelectorAll('[data-animate]');
 const observer = new IntersectionObserver((entries, obs) => {
